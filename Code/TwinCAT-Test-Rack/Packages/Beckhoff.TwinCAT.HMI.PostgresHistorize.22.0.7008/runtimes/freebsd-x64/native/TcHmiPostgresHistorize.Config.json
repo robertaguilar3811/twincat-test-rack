@@ -1,0 +1,236 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.0.3",
+  "guid": "C038F8C1-35BB-4197-964E-2F9E3B511F93",
+  "symbolCategories": [
+    {
+      "name": "database",
+      "localization": "databaseSettingsCategory"
+    }
+  ],
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "GetTrendLineData": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "chartName": {
+            "type": "string",
+            "description": "descChartName"
+          },
+          "xAxisStart": {
+            "$ref": "#/definitions/pointInTime"
+          },
+          "xAxisEnd": {
+            "$ref": "#/definitions/pointInTime"
+          },
+          "displayWidth": {
+            "type": "number",
+            "minimum": 2.0
+          },
+          "yAxes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "symbol"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "descSymbolName"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "chartName",
+          "yAxes",
+          "xAxisStart",
+          "displayWidth"
+        ]
+      },
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "axesData": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "descAxisDataX"
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "descAxisDataY"
+                  },
+                  "error": {
+                    "type": "integer"
+                  },
+                  "flags": {
+                    "type": "string",
+                    "description": "descAxisDataFlags"
+                  }
+                }
+              }
+            },
+            "description": "descAxisData"
+          }
+        }
+      }
+    },
+    "GetTrendLineWindow": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "chartName": {
+            "type": "string",
+            "description": "descChartName"
+          },
+          "xAxisStart": {
+            "$ref": "#/definitions/pointInTime"
+          },
+          "xAxisEnd": {
+            "$ref": "#/definitions/pointInTime"
+          },
+          "yAxes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "symbol"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "descSymbolName"
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": "descTrendLineAxisY"
+          }
+        },
+        "required": [
+          "chartName",
+          "yAxes",
+          "xAxisStart"
+        ]
+      },
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "xAxisStart": {
+            "type": "string",
+            "format": "date-time",
+            "description": "descTrendLineAxisStartX"
+          },
+          "xAxisEnd": {
+            "type": "string",
+            "format": "date-time",
+            "description": "descTrendLineAxisEndX"
+          }
+        }
+      }
+    },
+    "DeleteDatabaseEntries": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "symbolName": {
+            "type": "string"
+          },
+          "disableRecording": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "ResetDatabase": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "connectionState": {
+            "propertyOrder": 1,
+            "type": "string",
+            "enum": [
+              "Connected",
+              "Not Connected",
+              "Pending"
+            ],
+            "readOnly": true
+          },
+          "domainState": {
+            "propertyOrder": 2,
+            "type": "string",
+            "enum": [
+              "Good",
+              "Bad"
+            ]
+          },
+          "domainError": {
+            "propertyOrder": 3,
+            "type": "string",
+            "format": "multiline"
+          },
+          "databaseSize": {
+            "allOf": [
+              {
+                "$ref": "tchmi:general#/definitions/INT64"
+              },
+              {
+                "displayClass": "byte",
+                "propertyOrder": 4,
+                "readOnly": true,
+                "description": "descDatabaseSize"
+              }
+            ]
+          },
+          "numEntries": {
+            "type": "integer",
+            "propertyOrder": 5,
+            "readOnly": true
+          }
+        },
+        "required": [
+          "domainState",
+          "connectionState"
+        ]
+      }
+    }
+  },
+  "packageVersion": "22.0.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "g6v6jj2LskYYmlYEnBunzBUi0Lp5brvkfBJJyn0UmAiKbFuEGEhad0YVIwVhWAzMTYkD+ytoDlSdhevWkt2ZOPnmOjPzcdoG8LUrvjbi569VzgBM0gVC8vsHSB6YjDz6oS6T5h+kFFdY0SwZjmGEA1Szi13bMAoU2Q4li8affFD7NSd06fdlNIiSGDOYDp/wFe397gsfKBm+kl32p5VoKhtU25OWgkas090WXYS+KvA5thKzzq3Jd32mV4MTpQW47xIwigMq1lVUhSM7gRpwQw8qU7ZNx1OZYC+YOGk5dKJeQf0bXBioh04g9mPonwh4mkB+YIB2TmOccW6ooNXodQ=="
+}

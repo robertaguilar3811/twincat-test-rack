@@ -1,0 +1,369 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "ldapAttributeValue": {
+      "type": "string",
+      "pattern": "#(?:[\\dA-Fa-f]{2})+|(?:[^,=\\+<>#;\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*|\"(?:[^\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*\""
+    },
+    "ldapDistinguishedName": {
+      "type": "string",
+      "pattern": "^(?:[A-Za-z][\\w-]*|\\d+(?:\\.\\d+)*)=(?:#(?:[\\dA-Fa-f]{2})+|(?:[^,=\\+<>#;\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*|\"(?:[^\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*\")(?:\\+(?:[A-Za-z][\\w-]*|\\d+(?:\\.\\d+)*)=(?:#(?:[\\dA-Fa-f]{2})+|(?:[^,=\\+<>#;\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*|\"(?:[^\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*\"))*(?:,(?:[A-Za-z][\\w-]*|\\d+(?:\\.\\d+)*)=(?:#(?:[\\dA-Fa-f]{2})+|(?:[^,=\\+<>#;\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*|\"(?:[^\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*\")(?:\\+(?:[A-Za-z][\\w-]*|\\d+(?:\\.\\d+)*)=(?:#(?:[\\dA-Fa-f]{2})+|(?:[^,=\\+<>#;\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*|\"(?:[^\\\\\"]|\\\\[,=\\+<>#;\\\\\"]|\\\\[\\dA-Fa-f]{2})*\"))*)*$"
+    }
+  },
+  "properties": {
+    "HOST": {
+      "description": "DESC_HOST",
+      "propertyOrder": 1,
+      "defaultConfigurable": true,
+      "type": "string",
+      "default": ""
+    },
+    "PORT": {
+      "description": "DESC_PORT",
+      "propertyOrder": 2,
+      "defaultConfigurable": true,
+      "type": "integer",
+      "minimum": 1,
+      "default": 389
+    },
+    "USE_TLS": {
+      "configDescription": "DESC_USE_TLS",
+      "propertyOrder": 3,
+      "defaultConfigurable": true,
+      "type": "boolean",
+      "default": false
+    },
+    "TRUST_ALL_CERTIFICATES": {
+      "configDescription": "DESC_TRUST_ALL_CERTIFICATES",
+      "propertyOrder": 4,
+      "defaultConfigurable": true,
+      "type": "boolean",
+      "default": false
+    },
+    "TIMEOUT": {
+      "description": "DESC_TIMEOUT",
+      "propertyOrder": 5,
+      "type": "string",
+      "format": "timespan",
+      "default": "PT10S",
+      "formatMinimum": "PT1S",
+      "visibility": "HideInEngineering"
+    },
+    "AUTHENTICATION_MECHANISM": {
+      "description": "DESC_AUTHENTICATION_MECHANISM",
+      "propertyOrder": 6,
+      "type": "string",
+      "default": "Simple",
+      "enum": [
+        "Simple",
+        "Digest-MD5"
+      ],
+      "category": "authentication"
+    },
+    "BIND_USER_AUTHENTICATION_MECHANISM": {
+      "configDescription": "DESC_BIND_USER_AUTHENTICATION_MECHANISM",
+      "propertyOrder": 7,
+      "type": "string",
+      "default": "None",
+      "enum": [
+        "None",
+        "Anonymous",
+        "Simple",
+        "Digest-MD5",
+        "Kerberos-Credential-Cache"
+      ],
+      "category": "bindUser"
+    },
+    "BIND_USER_DN": {
+      "allOf": [
+        {
+          "configDescription": "DESC_BIND_USER_DN",
+          "propertyOrder": 8,
+          "default": "",
+          "category": "bindUser"
+        },
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": ""
+            },
+            {
+              "$ref": "#/definitions/ldapDistinguishedName"
+            },
+            {
+              "$ref": "#/definitions/ldapAttributeValue"
+            }
+          ]
+        }
+      ]
+    },
+    "BIND_USER_PASSWORD": {
+      "description": "DESC_BIND_USER_PASSWORD",
+      "propertyOrder": 9,
+      "type": "string",
+      "format": "masked",
+      "category": "bindUser"
+    },
+    "BASE_DN": {
+      "allOf": [
+        {
+          "configDescription": "DESC_BASE_DN",
+          "propertyOrder": 10,
+          "default": "",
+          "optionMethod": {
+            "symbol": "{domain}.ListNamingContexts"
+          }
+        },
+        {
+          "anyOf": [
+            {
+              "type": "string",
+              "const": ""
+            },
+            {
+              "$ref": "#/definitions/ldapDistinguishedName"
+            }
+          ]
+        }
+      ]
+    },
+    "USER_FILTER": {
+      "configDescription": "DESC_USER_FILTER",
+      "propertyOrder": 11,
+      "type": "string",
+      "enum": [
+        "(&({username_attribute}={input})(objectCategory=person)(objectClass=user))",
+        "(&({username_attribute}={input})(objectClass=person))",
+        "(&({username_attribute}={input})(objectClass=inetOrgPerson))"
+      ],
+      "default": "(&({username_attribute}={input})(objectClass=person))",
+      "category": "authentication"
+    },
+    "USERNAME_ATTRIBUTE": {
+      "configDescription": "DESC_USERNAME_ATTRIBUTE",
+      "propertyOrder": 12,
+      "type": "string",
+      "enum": [
+        "userPrincipalName",
+        "sAMAccountName",
+        "uid",
+        "mail"
+      ],
+      "default": "userPrincipalName",
+      "category": "authentication"
+    },
+    "IGNORE_DOMAIN_SUFFIX_DURING_LOGIN": {
+      "configDescription": "DESC_IGNORE_DOMAIN_SUFFIX_DURING_LOGIN",
+      "propertyOrder": 13,
+      "type": "boolean",
+      "default": false,
+      "category": "authentication"
+    },
+    "APPEND_DOMAIN_DURING_LOGIN": {
+      "configDescription": "DESC_APPEND_DOMAIN_DURING_LOGIN",
+      "propertyOrder": 14,
+      "type": "string",
+      "default": "",
+      "category": "authentication"
+    },
+    "USE_LDAP_SEARCH_FOR_LISTUSERS": {
+      "configDescription": "DESC_USE_LDAP_SEARCH_FOR_LISTUSERS",
+      "propertyOrder": 15,
+      "type": "boolean",
+      "default": false,
+      "category": "authentication"
+    },
+    "LDAP_OPT_REFERRALS": {
+      "configDescription": "DESC_LDAP_OPT_REFERRALS",
+      "propertyOrder": 16,
+      "type": "boolean",
+      "default": false,
+      "visibility": "HideInEngineering"
+    },
+    "CASE_SENSITIVE_ATTRIBUTE_VALUE_COMPARISON": {
+      "description": "DESC_CASE_SENSITIVE_ATTRIBUTE_VALUE_COMPARISON",
+      "propertyOrder": 17,
+      "type": "boolean",
+      "default": false,
+      "visibility": "HideInEngineering"
+    },
+    "GROUP_MAPPINGS": {
+      "configDescription": "DESC_GROUP_MAPPINGS",
+      "propertyOrder": 18,
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "LDAP_ATTRIBUTE_NAME": {
+            "propertyOrder": 1,
+            "type": "string",
+            "default": "memberOf"
+          },
+          "LDAP_ATTRIBUTE_VALUE": {
+            "allOf": [
+              {
+                "propertyOrder": 2
+              },
+              {
+                "$ref": "#/definitions/ldapAttributeValue"
+              }
+            ]
+          },
+          "HMI_GROUP": {
+            "propertyOrder": 3,
+            "type": "string",
+            "optionMethod": {
+              "symbol": "TcHmiSrv.Config::USERGROUPS"
+            }
+          }
+        },
+        "required": [
+          "LDAP_ATTRIBUTE_NAME",
+          "LDAP_ATTRIBUTE_VALUE",
+          "HMI_GROUP"
+        ]
+      },
+      "default": [
+        {
+          "LDAP_ATTRIBUTE_NAME": "",
+          "LDAP_ATTRIBUTE_VALUE": "",
+          "HMI_GROUP": "__SystemUsers"
+        }
+      ],
+      "category": "integration"
+    },
+    "BLOCK_USERS": {
+      "configDescription": "DESC_BLOCK_USERS",
+      "propertyOrder": 19,
+      "type": "object",
+      "properties": {
+        "USE_WHITELISTING": {
+          "configDescription": "DECS_USE_WHITELISTING",
+          "propertyOrder": 1,
+          "type": "boolean",
+          "default": false
+        },
+        "WHITELIST_ACCOUNTS_AFFECTED_BY_GROUP_MAPPINGS": {
+          "description": "DESC_WHITELIST_ACCOUNTS_AFFECTED_BY_GROUP_MAPPINGS",
+          "propertyOrder": 2,
+          "type": "boolean",
+          "default": false
+        },
+        "LIST": {
+          "propertyOrder": 3,
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "LDAP_ATTRIBUTE_NAME": {
+                "propertyOrder": 1,
+                "type": "string",
+                "default": "memberOf"
+              },
+              "LDAP_ATTRIBUTE_VALUE": {
+                "allOf": [
+                  {
+                    "propertyOrder": 2
+                  },
+                  {
+                    "$ref": "#/definitions/ldapAttributeValue"
+                  }
+                ]
+              }
+            },
+            "required": [
+              "LDAP_ATTRIBUTE_NAME",
+              "LDAP_ATTRIBUTE_VALUE"
+            ]
+          },
+          "default": []
+        }
+      },
+      "required": [
+        "USE_WHITELISTING",
+        "WHITELIST_ACCOUNTS_AFFECTED_BY_GROUP_MAPPINGS",
+        "LIST"
+      ],
+      "category": "integration",
+      "default": {
+        "USE_WHITELISTING": false,
+        "LIST": []
+      }
+    },
+    "SYNC_INTERVAL": {
+      "configDescription": "DESC_SYNC_INTERVAL",
+      "propertyOrder": 20,
+      "type": "string",
+      "format": "timespan",
+      "default": "PT0S"
+    },
+    "ADDED_GROUPS_CACHE": {
+      "configDescription": "DESC_ADDED_GROUPS_CACHE",
+      "propertyOrder": 21,
+      "visibility": "HideInEngineering",
+      "type": "object",
+      "additionalProperties": {
+        "uniqueItems": true,
+        "type": "array",
+        "items": {
+          "type": "string",
+          "optionMethod": {
+            "symbol": "TcHmiSrv.Config::USERGROUPS"
+          }
+        }
+      },
+      "category": "integration"
+    },
+    "VISIBLE_ATTRIBUTES": {
+      "configDescription": "DESC_VISIBLE_ATTRIBUTES",
+      "propertyOrder": 21,
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "category": "integration",
+      "default": []
+    },
+    "extensionHostMaxReloads": {
+      "configDescription": "DESC_EXTENSION_HOST_MAX_RELOADS",
+      "type": "integer",
+      "minimum": 0,
+      "default": 10
+    },
+    "extensionHostReloadInterval": {
+      "configDescription": "DESC_EXTENSION_HOST_RELOAD_INTERVAL",
+      "type": "string",
+      "format": "timespan",
+      "default": "PT10S"
+    }
+  },
+  "required": [
+    "HOST",
+    "PORT",
+    "USE_TLS",
+    "TRUST_ALL_CERTIFICATES",
+    "TIMEOUT",
+    "AUTHENTICATION_MECHANISM",
+    "BIND_USER_AUTHENTICATION_MECHANISM",
+    "BIND_USER_DN",
+    "BIND_USER_PASSWORD",
+    "BASE_DN",
+    "USER_FILTER",
+    "USERNAME_ATTRIBUTE",
+    "IGNORE_DOMAIN_SUFFIX_DURING_LOGIN",
+    "APPEND_DOMAIN_DURING_LOGIN",
+    "LDAP_OPT_REFERRALS",
+    "USE_LDAP_SEARCH_FOR_LISTUSERS",
+    "CASE_SENSITIVE_ATTRIBUTE_VALUE_COMPARISON",
+    "GROUP_MAPPINGS",
+    "BLOCK_USERS",
+    "ADDED_GROUPS_CACHE",
+    "VISIBLE_ATTRIBUTES",
+    "SYNC_INTERVAL"
+  ],
+  "type": "object",
+  "additionalProperties": false
+}

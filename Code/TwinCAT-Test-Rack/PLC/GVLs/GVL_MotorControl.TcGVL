@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <GVL Name="GVL_MotorControl" Id="{6d3ad16d-b7c0-47e1-82ea-bcdc2426d51a}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL CONSTANT
+	CNUM_AXIS : INT := 1;
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>

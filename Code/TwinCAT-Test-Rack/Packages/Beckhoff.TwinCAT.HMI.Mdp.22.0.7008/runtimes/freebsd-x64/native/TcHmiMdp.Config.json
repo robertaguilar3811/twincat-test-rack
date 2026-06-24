@@ -1,0 +1,67 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.1.0",
+  "guid": "713EC6CF-3C7D-4061-BB8C-85C04825D1A4",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListSymbols": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "GetSchema": {
+      "writeValue": {
+        "type": "string"
+      },
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "targetSystems": {
+            "type": "object",
+            "description": "descTargetSystems",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "connectionState": {
+                  "propertyOrder": 1,
+                  "type": "string"
+                },
+                "connectError": {
+                  "propertyOrder": 2,
+                  "type": "integer"
+                },
+                "connectErrorMessage": {
+                  "propertyOrder": 3,
+                  "type": "string"
+                },
+                "availableModulesCount": {
+                  "propertyOrder": 4,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connectionState"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "packageVersion": "22.0.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "Aw89XxFaEiTQZ3JJWWsPJUmzUqQJooErYmHW6000e8rRuTHh7vcJxoT/sgHViq3sU7hgQS/9utjytY0d8aQIMw3E98pI98M8LsVaty2LSVXWLs5iIa7aRjB8EAiy4fncdSAC/kNWAdN8dTLkmxfOVSFwewZFVfVz7R+GK7FlG5K+S2E81vTc1CYu1IWwB4SmIqEQjvHHoTkSyR/GVeuVES/DVI3gNdYKgLa9KBQvnPtWltZYjM2ouXF8pS3WT7MqdpgD/z/lhhXRcW3UZd69SQpWZ3wFMb5OksNAfFTka2QvWYX1FpWpXsgbEJln2GTVst3uNU1/Ffh22oNFHJtqjA=="
+}

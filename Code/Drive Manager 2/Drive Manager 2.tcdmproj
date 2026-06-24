@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Name>Drive Manager 2</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6cb1de73-2ebd-4c68-854d-599300815d16}</ProjectGuid>
+    <TcPath>..\TwinCAT-Test-Rack\TwinCAT-Test-Rack.tsproj</TcPath>
+    <AssemblyName>Drive Manager 2</AssemblyName>
+    <RootNamespace>Drive Manager 2</RootNamespace>
+    <SaveDriveDataAsFiles>False</SaveDriveDataAsFiles>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="Term 7 %28EL7062%29.tcdmdrv">
+      <SubType>Content</SubType>
+      <IoItemPathName>TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EK1122)^Term 6 (EK1100)^Term 7 (EL7062)</IoItemPathName>
+    </Content>
+    <Content Include="Term 8 %28EL7062%29.tcdmdrv">
+      <SubType>Content</SubType>
+      <IoItemPathName>TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EK1122)^Term 6 (EK1100)^Term 8 (EL7062)</IoItemPathName>
+    </Content>
+  </ItemGroup>
+</Project>

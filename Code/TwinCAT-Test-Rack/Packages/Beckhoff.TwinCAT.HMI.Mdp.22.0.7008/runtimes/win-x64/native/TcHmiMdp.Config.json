@@ -1,0 +1,67 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.1.0",
+  "guid": "713EC6CF-3C7D-4061-BB8C-85C04825D1A4",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListSymbols": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "GetSchema": {
+      "writeValue": {
+        "type": "string"
+      },
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "targetSystems": {
+            "type": "object",
+            "description": "descTargetSystems",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "connectionState": {
+                  "propertyOrder": 1,
+                  "type": "string"
+                },
+                "connectError": {
+                  "propertyOrder": 2,
+                  "type": "integer"
+                },
+                "connectErrorMessage": {
+                  "propertyOrder": 3,
+                  "type": "string"
+                },
+                "availableModulesCount": {
+                  "propertyOrder": 4,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connectionState"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "packageVersion": "22.0.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "GJ8DCNoDv7q+onRiAYa+XRXCZPUUyEQIhW1hM+n95c7XOaEbfdAFC6otVRdCROuxVFZIMoqmVLFbq/UJofmWvFR5aPCaroIiJWVIUWHMCTVlmR2zip6Iq5xjPF0ykjoolx4RedOsQnnRedckPloslCv1OlyZSTgkloyp7QBhS/BGkDE4wc56cZD14J3zJOC6+vxxsXQwy3r2b2Htdfa3PQzzS2ycbeRmvYCoYquHK5Jg+LdUcVVE4ipHIdsOBh4NXlqBCM1dCuXjzOZzqGkgIasGW3kCEziYPXgbDdaVGnfgGNeDsV9Dq90r3wGDDtXJiyaLh9nw2lfBZcYfCHx2wQ=="
+}

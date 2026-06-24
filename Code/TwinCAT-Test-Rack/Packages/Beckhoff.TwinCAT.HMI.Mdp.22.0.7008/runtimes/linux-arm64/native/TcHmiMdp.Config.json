@@ -1,0 +1,67 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.1.0",
+  "guid": "713EC6CF-3C7D-4061-BB8C-85C04825D1A4",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListSymbols": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "GetSchema": {
+      "writeValue": {
+        "type": "string"
+      },
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "targetSystems": {
+            "type": "object",
+            "description": "descTargetSystems",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "connectionState": {
+                  "propertyOrder": 1,
+                  "type": "string"
+                },
+                "connectError": {
+                  "propertyOrder": 2,
+                  "type": "integer"
+                },
+                "connectErrorMessage": {
+                  "propertyOrder": 3,
+                  "type": "string"
+                },
+                "availableModulesCount": {
+                  "propertyOrder": 4,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connectionState"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "packageVersion": "22.0.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "GAXEJUCcMGWn+KYs0kfOxImkfpI9a9vlGdw+96CtR1hRSbpY8ECKeFhjPlGNpl2uU9IA01GtxjSXZJo0rvdwFZBVoYRoTG9C6pZrs2haFMV0IDS8xirfoIk+lhqlHAmaFUY6VtT4xSiezxONMUSuq02tTBtUxBQbcrLDVsvgQqksMz2Akcaf9RodhjTy80o5b+429HqUFyUN0kvG884TczElhQ3B10MCN2vU5XiFLCErMBrBF0scZtov0AVJvE9v8H00obgemIL6kT+jBfxyw4ux1iJPTz3XJEPPSvUjc2nKtLyMyT6R4gWFB0R71G8335d7A630Ed0wY9xYJMFyKw=="
+}
