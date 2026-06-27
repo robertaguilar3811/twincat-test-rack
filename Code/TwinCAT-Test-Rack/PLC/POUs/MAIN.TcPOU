@@ -3,19 +3,25 @@
   <POU Name="MAIN" Id="{30c7193e-59f6-45c5-a509-33b386729a73}" SpecialFunc="None">
     <Declaration><![CDATA[PROGRAM MAIN
 VAR
+	// Motors
 	motor : ARRAY[1..GVL_MotorControl.CNUM_AXIS] OF ST_MotorParameters;
-	
+	i : INT;
+
 	// Function blocks
 	fbMotorControl : ARRAY[1..GVL_MotorControl.CNUM_AXIS] OF FB_MotorControl;
-	
+
+	// Default parameters
 	bInit : BOOL := FALSE;
-	
+
+	// State machine
 	state : INT := 0;
 	stateMessage : STRING;
-	i : INT;
-	
+
 	// Lights
 	greenLight, orangeLight, redLight AT %Q* : BOOL;
+
+	// Switches
+	sw1, sw2, sw3 AT %I* : BOOL;
 END_VAR]]></Declaration>
     <Implementation>
       <ST><![CDATA[IF NOT bInit THEN
@@ -52,17 +58,17 @@ CASE state OF
 	0: // Off
 
 	10: //
-	
+
 	20: //
-	
+
 	30: //
-	
+
 	40: //
-	
+
 	50: //
-	
+
 	999: //
-	
+
 END_CASE
 
 // Outputs]]></ST>

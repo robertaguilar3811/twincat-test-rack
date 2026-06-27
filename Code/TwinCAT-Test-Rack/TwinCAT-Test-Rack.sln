@@ -7,7 +7,7 @@ Project("{B1E792BE-AA5F-4E3C-8C82-674BF9C0715B}") = "TwinCAT-Test-Rack", "TwinCA
 EndProject
 Project("{FE7A1B72-C5B7-4D7C-BB7D-76384D4DE8E1}") = "HMI", "HMI\HMI.hmiproj", "{7B6F1D77-1051-4967-9183-032B9F23009B}"
 EndProject
-Project("{23D6B0B7-CBAA-4070-A2AF-F2FCE2506A3D}") = "Drive Manager 2", "..\Drive Manager 2\Drive Manager 2.tcdmproj", "{6CB1DE73-2EBD-4C68-854D-599300815D16}"
+Project("{23D6B0B7-CBAA-4070-A2AF-F2FCE2506A3D}") = "Drive Manager 2", "Drive Manager 2\Drive Manager 2.tcdmproj", "{6CB1DE73-2EBD-4C68-854D-599300815D16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

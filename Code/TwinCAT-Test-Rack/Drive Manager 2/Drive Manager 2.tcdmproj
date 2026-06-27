@@ -4,7 +4,7 @@
     <Name>Drive Manager 2</Name>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6cb1de73-2ebd-4c68-854d-599300815d16}</ProjectGuid>
-    <TcPath>..\TwinCAT-Test-Rack\TwinCAT-Test-Rack.tsproj</TcPath>
+    <TcPath>..\TwinCAT-Test-Rack.tsproj</TcPath>
     <AssemblyName>Drive Manager 2</AssemblyName>
     <RootNamespace>Drive Manager 2</RootNamespace>
     <SaveDriveDataAsFiles>False</SaveDriveDataAsFiles>
