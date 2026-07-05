@@ -22,6 +22,7 @@ STRUCT
 	stateMessage : STRING;
 	position : LREAL;
 	velocity : LREAL;
+	moveDone : BOOL;
 END_STRUCT
 END_TYPE
 ]]></Declaration>

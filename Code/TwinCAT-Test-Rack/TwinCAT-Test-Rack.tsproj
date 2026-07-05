@@ -1424,12 +1424,12 @@ External Setpoint Generation:
 			</Relations>
 		</DataType>
 		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
-			<BitSize>2</BitSize>
+			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
+			<BitSize>7</BitSize>
 			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
 			<ArrayInfo>
 				<LBound>0</LBound>
-				<Elements>2</Elements>
+				<Elements>7</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -1439,15 +1439,6 @@ External Setpoint Generation:
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>5</Elements>
-			</ArrayInfo>
-		</DataType>
-		<DataType>
-			<Name GUID="{18071995-0000-0000-0000-002000000007}" IecBaseType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..6] OF BIT</Name>
-			<BitSize>7</BitSize>
-			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
-			<ArrayInfo>
-				<LBound>0</LBound>
-				<Elements>7</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -1475,6 +1466,15 @@ External Setpoint Generation:
 			<ArrayInfo>
 				<LBound>0</LBound>
 				<Elements>4</Elements>
+			</ArrayInfo>
+		</DataType>
+		<DataType>
+			<Name GUID="{18071995-0000-0000-0000-002000000002}" IecBaseType="true" BitType="true" AutoDeleteType="true" HideSubItems="true">ARRAY [0..1] OF BIT</Name>
+			<BitSize>2</BitSize>
+			<BaseType GUID="{18071995-0000-0000-0000-000000000010}">BIT</BaseType>
+			<ArrayInfo>
+				<LBound>0</LBound>
+				<Elements>2</Elements>
 			</ArrayInfo>
 		</DataType>
 		<DataType>
@@ -2029,11 +2029,23 @@ External Setpoint Generation:
 		</Motion>
 		<Plc>
 			<Project GUID="{CABE9271-D158-4007-AB4F-0CE6FA5B5552}" Name="PLC" PrjFilePath="PLC\PLC.plcproj" TmcFilePath="PLC\PLC.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{711C38B1-651A-2F30-2F61-8E9C8EFCF948}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="PLC\PLC.tmc" TmcHash="{9EB5EA9B-4F69-21D9-B94E-96B5793E2084}">
 					<Name>PLC Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Vars VarGrpType="1">
 						<Name>PlcTask Inputs</Name>
+						<Var>
+							<Name>MAIN.motor[1].axis.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.motor[2].axis.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.motor[3].axis.NcToPlc</Name>
+							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
+						</Var>
 						<Var>
 							<Name>MAIN.sw1</Name>
 							<Comment><![CDATA[ Switches]]></Comment>
@@ -2051,25 +2063,25 @@ External Setpoint Generation:
 							<Name>GVL_Safety.SafetyOutput</Name>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.motor[1].axis.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.motor[2].axis.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.motor[3].axis.NcToPlc</Name>
-							<Type GUID="{25521FAA-EA5F-4C7F-8864-BBCCDACD2E98}" Namespace="MC">NCTOPLC_AXIS_REF</Type>
-						</Var>
 					</Vars>
 					<Vars VarGrpType="2" AreaNo="1">
 						<Name>PlcTask Outputs</Name>
 						<Var>
+							<Name>MAIN.motor[2].axis.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.motor[3].axis.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
+						</Var>
+						<Var>
 							<Name>MAIN.greenLight</Name>
 							<Comment><![CDATA[ Lights]]></Comment>
 							<Type>BOOL</Type>
+						</Var>
+						<Var>
+							<Name>MAIN.motor[1].axis.PlcToNc</Name>
+							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
 						</Var>
 						<Var>
 							<Name>MAIN.orangeLight</Name>
@@ -2091,18 +2103,6 @@ External Setpoint Generation:
 							<Name>GVL_Safety.SafetyErrAck</Name>
 							<Type>BOOL</Type>
 						</Var>
-						<Var>
-							<Name>MAIN.motor[1].axis.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.motor[2].axis.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
-						<Var>
-							<Name>MAIN.motor[3].axis.PlcToNc</Name>
-							<Type GUID="{96B75FEB-2D84-43BE-A3EC-D9A681F27D52}" Namespace="MC">PLCTONC_AXIS_REF</Type>
-						</Var>
 					</Vars>
 					<Contexts>
 						<Context>
@@ -2121,6 +2121,23 @@ External Setpoint Generation:
 				</Instance>
 			</Project>
 		</Plc>
+		<Safety>
+			<Project GUID="{C036F544-6F9B-4E6B-B999-37759B6E25CD}" Name="SAFETY" PrjFilePath="SAFETY\SAFETY.splcProj" TmcFilePath="SAFETY\SAFETY.tmc" GeneralArchiveSettings="#x000f" TargetArchiveSettings="#x0007" FileArchiveSettings="#x000e">
+				<Instance Id="#x01010010" KeepUnrestoredLinks="2">
+					<Name>SAFETY Instance</Name>
+					<TmcDesc GUID="{72A6D5B8-E98C-4604-8B90-09D1F8AB38A9}">
+						<Name>Safety</Name>
+						<InitSequence>PO</InitSequence>
+						<Contexts>
+							<Context>
+								<Id>1</Id>
+								<Name>Default</Name>
+							</Context>
+						</Contexts>
+					</TmcDesc>
+				</Instance>
+			</Project>
+		</Safety>
 		<Io>
 			<Device Id="1" DevType="111" DevFlags="#x0003" AmsPort="28673" AmsNetId="5.148.118.242.2.1" RemoteName="Device 1 (EtherCAT)" InfoImageId="2">
 				<Name>Device 1 (EtherCAT)</Name>
@@ -2240,14 +2257,14 @@ External Setpoint Generation:
 							</Pdo>
 						</EtherCAT>
 					</Box>
-					<Box Id="4" BoxType="9099" BoxFlags="#x00000020">
+					<Box Id="12" BoxType="9099" BoxFlags="#x00000020">
 						<Name>Term 4 (EL2911)</Name>
 						<ImageId>1003</ImageId>
 						<EtherCAT SlaveType="2" PdiType="#x0005" MboxDataLinkLayer="true" StateMBoxPolling="true" CycleMBoxPollingTime="0" CoeType="3" FoeType="1" VendorId="#x00000002" ProductCode="#x0b5f3052" RevisionNo="#x00100000" InfoDataAddr="true" RepeatSupport="true" TimeoutStateChange1="5000" TimeoutMailbox2="10000" TComSupport="true" PortPhys="51" DebugMemory="8" SafetyLogicSupported="true" MaxSlotCount="4" Type="EL2911, Potential supply terminal (10 A) with 4 Ch. Safety Inputs, TwinSAFE" Desc="EL2911" PortABoxInfo="#x01000003">
 							<SyncMan>001000012600010001000000000100010001001026010000</SyncMan>
 							<SyncMan>001100012200010002000000000100010001001122010000</SyncMan>
-							<SyncMan>001208002400010003000000000000000700001224010000</SyncMan>
-							<SyncMan>001d09002000010004000000000000000900001d20010000</SyncMan>
+							<SyncMan>001203002400010003000000000000000700001224010000</SyncMan>
+							<SyncMan>001d0a002000010004000000000000000900001d20010000</SyncMan>
 							<SyncMan>002e00002400000003000000000000000000002e24000000</SyncMan>
 							<SyncMan>002f00002000000004000000000000000000002f20000000</SyncMan>
 							<SyncMan>fa2f01002400010003000000000000000200fa2f24010000</SyncMan>
@@ -2266,91 +2283,66 @@ External Setpoint Generation:
 							<SuTask>#x00000000</SuTask>
 							<SuTask>#x00000000</SuTask>
 							<SuTask>#x00000000</SuTask>
-							<MBoxUserCmdData>004003000a00000000000000030010000000000000000000000000000000000020f3100502000000010000</MBoxUserCmdData>
-							<Pdo Name="FSoE Inputs" Index="#x1a00" Flags="#x0091" SyncMan="3">
-								<Entry Name="FSOE__FSoE Command" Index="#x6020" Sub="#x01">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSOUT Module.Module Fault" Index="#x6002" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSIN Module.Channel 1.Input" Index="#x6011" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSIN Module.Channel 2.Input" Index="#x6011" Sub="#x02">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSIN Module.Channel 3.Input" Index="#x6011" Sub="#x03">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSIN Module.Channel 4.Input" Index="#x6011" Sub="#x04">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSIN Module.Module Fault" Index="#x6012" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__">
-									<Type GUID="{18071995-0000-0000-0000-002000000002}">ARRAY [0..1] OF BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSoE CRC 000" Index="#x6020" Sub="#x03">
-									<Type>UINT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSoE Connection ID" Index="#x6020" Sub="#x02">
-									<Type>UINT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="FSoE Outputs" Index="#x1600" InOut="1" Flags="#x0091" SyncMan="2">
-								<Entry Name="FSOE__FSoE Command" Index="#x7020" Sub="#x01">
-									<Type>USINT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSOUT Module.Output" Index="#x7001" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSOUT Module.ErrAck" Index="#x7002" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSIN Module.ErrAck" Index="#x7012" Sub="#x01">
-									<Type>BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__">
-									<Type GUID="{18071995-0000-0000-0000-002000000005}">ARRAY [0..4] OF BIT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSoE CRC 000" Index="#x7020" Sub="#x03">
-									<Type>UINT</Type>
-								</Entry>
-								<Entry Name="FSOE__FSoE Connection ID" Index="#x7020" Sub="#x02">
-									<Type>UINT</Type>
-								</Entry>
-							</Pdo>
-							<Pdo Name="Outputs" Index="#x17fe" InOut="1" Flags="#x0091" SyncMan="6" SyncUnit="2">
-								<Entry Name="Standard Output" Index="#x7003" Sub="#x01">
+							<MBoxUserCmdData>004003000a00000000000000000000000000000000000000000000000000000020f3100502000000010000</MBoxUserCmdData>
+							<Pdo Name="StandardInputs" Index="#x1bf0" Flags="#x2011" SyncMan="3">
+								<Entry Name="TwinSafeGroup1.Output_4" Index="#x7000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
 									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
 								</Entry>
 							</Pdo>
-							<Pdo Name="FIELDVOLTAGE Field Voltage Status" Index="#x1bfe" Flags="#x0091" SyncMan="3">
-								<Entry Name="Fieldvoltage Underrange" Index="#xf6c0" Sub="#x01">
+							<Pdo Name="StandardOutputs" Index="#x17f0" InOut="1" Flags="#x2011" SyncMan="2">
+								<Entry Name="TwinSafeGroup1.ErrorAcknowledgement_1" Index="#x6000" Sub="#x01">
 									<Type>BIT</Type>
 								</Entry>
-								<Entry Name="Fieldvoltage Overrange" Index="#xf6c0" Sub="#x02">
+								<Entry Name="TwinSafeGroup1.Run_2" Index="#x6000" Sub="#x02">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="TwinSafeGroup1.Restart_5" Index="#x6000" Sub="#x03">
 									<Type>BIT</Type>
 								</Entry>
 								<Entry>
+									<Type GUID="{18071995-0000-0000-0000-002000000005}">ARRAY [0..4] OF BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Device Info Data" Index="#x1bfb" Flags="#x2011" SyncMan="3">
+								<Entry Name="Project CRC" Index="#x7000" Sub="#x01">
+									<Type>WORD</Type>
+								</Entry>
+								<Entry Name="Serial Number" Index="#x7000" Sub="#x02">
+									<Type>UDINT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="Outputs" Index="#x17fe" InOut="1" Flags="#x0091" SyncMan="6" SyncUnit="2">
+								<Entry Name="Standard Output" BitLen="1" Index="#x7003" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry BitLen="7">
+									<Type GUID="{18071995-0000-0000-0000-002000000007}">ARRAY [0..6] OF BIT</Type>
+								</Entry>
+							</Pdo>
+							<Pdo Name="FIELDVOLTAGE Field Voltage Status" Index="#x1bfe" Flags="#x0091" SyncMan="3">
+								<Entry Name="Fieldvoltage Underrange" BitLen="1" Index="#xf6c0" Sub="#x01">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry Name="Fieldvoltage Overrange" BitLen="1" Index="#xf6c0" Sub="#x02">
+									<Type>BIT</Type>
+								</Entry>
+								<Entry BitLen="6">
 									<Type GUID="{18071995-0000-0000-0000-002000000006}">ARRAY [0..5] OF BIT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="FSLOGIC Inputs" Index="#x1bff" Flags="#x0091" SyncMan="3">
-								<Entry Name="Safe Logic State" Index="#xf100" Sub="#x01">
+								<Entry Name="Safe Logic State" BitLen="8" Index="#xf100" Sub="#x01">
 									<Type>USINT</Type>
 								</Entry>
-								<Entry Name="Cycle Counter" Index="#xf100" Sub="#x02">
+								<Entry Name="Cycle Counter" BitLen="8" Index="#xf100" Sub="#x02">
 									<Type>USINT</Type>
 								</Entry>
 							</Pdo>
 							<Pdo Name="FSLOGIC Outputs" Index="#x17ff" InOut="1" Flags="#x0091" SyncMan="2">
-								<Entry>
+								<Entry BitLen="16">
 									<Type GUID="{18071995-0000-0000-0000-002000000010}">ARRAY [0..1] OF BYTE</Type>
 								</Entry>
 							</Pdo>
@@ -2360,14 +2352,6 @@ External Setpoint Generation:
 							<Slot Name="FSOE-Slot">
 								<SlotData>0000000001000400000000000000000000000000000000000000000000000000</SlotData>
 								<ModuleIdent>2911</ModuleIdent>
-								<Module Id="#x03090001" Type="FSOE" Class="2911">
-									<Name>Module 1 (FSOE)</Name>
-									<ImageId>408</ImageId>
-									<ModuleData>020000005f0b000000002c000000000000000000000000000000000000000000</ModuleData>
-									<PdoIndex>6656</PdoIndex>
-									<PdoIndex>5632</PdoIndex>
-									<CoeProfile ProfileNo="#x01231389"/>
-								</Module>
 							</Slot>
 							<Slot Name="FSOUT-Slot">
 								<SlotData>0000010001000400000000000000000000000000000000000000000000000000</SlotData>
@@ -2405,7 +2389,7 @@ External Setpoint Generation:
 					<Box Id="5" BoxType="9099">
 						<Name>Term 5 (EK1122)</Name>
 						<ImageId>1004</ImageId>
-						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04622c52" RevisionNo="#x00120000" PortPhys="4883" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1122 2 port EtherCAT junction" Desc="EK1122" PortABoxInfo="#x01000004"/>
+						<EtherCAT SlaveType="1" PdiType="#x0d00" CycleMBoxPollingTime="0" VendorId="#x00000002" ProductCode="#x04622c52" RevisionNo="#x00120000" PortPhys="4883" MaxSlotCount="256" MaxSlotGroupCount="1" SlotPdoIncrement="1" SlotIndexIncrement="16" Type="EK1122 2 port EtherCAT junction" Desc="EK1122" PortABoxInfo="#x0100000c"/>
 						<Box Id="6" BoxType="9099">
 							<Name>Term 6 (EK1100)</Name>
 							<ImageId>1005</ImageId>
@@ -6194,6 +6178,7 @@ Bit 8 - 15 : reserved]]></Comment>
 		<MappingInfo Identifier="{00000000-2001-0850-0020-500841000403}" Id="#x02030020"/>
 		<MappingInfo Identifier="{00000000-0010-0304-3000-040310000403}" Id="#x02030010"/>
 		<MappingInfo Identifier="{00000000-0020-0304-3000-040322000403}" Id="#x02030030"/>
+		<MappingInfo Identifier="{05000010-2001-0850-3000-040300205008}" Id="#x02030040" Watchdog="14000000040000000400000004000000"/>
 		<OwnerA Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
 			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 5 (EK1122)^Term 6 (EK1100)^Term 7 (EL7062)">
 				<Link VarA="Drive^Inputs^In^nDataIn1" VarB="DRV Following error actual value Channel 1^Following error actual value"/>
@@ -6255,6 +6240,24 @@ Bit 8 - 15 : reserved]]></Comment>
 				<Link VarA="PlcTask Inputs^MAIN.sw1" VarB="Channel 1^Input"/>
 				<Link VarA="PlcTask Inputs^MAIN.sw2" VarB="Channel 2^Input"/>
 				<Link VarA="PlcTask Inputs^MAIN.sw3" VarB="Channel 3^Input"/>
+			</OwnerB>
+			<OwnerB Name="TIID^Device 1 (EtherCAT)^Term 1 (EK1200)^Term 4 (EL2911)">
+				<Link VarA="PlcTask Inputs^GVL_Safety.SafetyOutput" VarB="StandardInputs^TwinSafeGroup1.Output_4"/>
+				<Link VarA="PlcTask Outputs^GVL_Safety.SafetyErrAck" VarB="StandardOutputs^TwinSafeGroup1.ErrorAcknowledgement_1"/>
+				<Link VarA="PlcTask Outputs^GVL_Safety.SafetyRestart" VarB="StandardOutputs^TwinSafeGroup1.Restart_5"/>
+				<Link VarA="PlcTask Outputs^GVL_Safety.SafetyRun" VarB="StandardOutputs^TwinSafeGroup1.Run_2"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 1">
+				<Link VarA="PlcTask Inputs^MAIN.motor[1].axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.motor[1].axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 2">
+				<Link VarA="PlcTask Inputs^MAIN.motor[2].axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.motor[2].axis.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^Axis 3">
+				<Link VarA="PlcTask Inputs^MAIN.motor[3].axis.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.motor[3].axis.PlcToNc" VarB="Inputs^FromPlc"/>
 			</OwnerB>
 		</OwnerA>
 	</Mappings>

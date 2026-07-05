@@ -29,6 +29,30 @@
     "DEFAULTTIMEZONE": "client",
     "DEFINITIONS": {
         "ADS": {
+            "ADS-PLC1.AMSNETID": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/BYTE"
+                },
+                "maxItems": 6,
+                "minItems": 6,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_0..127_OF-DWORD": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/DWORD"
+                },
+                "maxItems": 128,
+                "minItems": 128,
+                "type": "array"
+            },
+            "ADS-PLC1.ARRAY_0..7_OF-MC.NCTOPLC_AXIS_REF_CAMCOUPLINGSTATE": {
+                "items": {
+                    "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_CAMCOUPLINGSTATE"
+                },
+                "maxItems": 8,
+                "minItems": 8,
+                "type": "array"
+            },
             "ADS-PLC1.E_ControlMode": {
                 "attributes": {
                     "generate_implicit_init_function": "",
@@ -50,6 +74,3427 @@
                     }
                 ],
                 "type": "integer"
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF": {
+                "additionalProperties": false,
+                "attributes": {
+                    "NcStructType": "2"
+                },
+                "properties": {
+                    "AbsPhasingPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 37
+                            }
+                        ]
+                    },
+                    "ActAcc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 40
+                            }
+                        ]
+                    },
+                    "ActPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "ActPosWithoutPosCorrection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 39
+                            }
+                        ]
+                    },
+                    "ActTorque": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 28
+                            }
+                        ]
+                    },
+                    "ActTorqueDerivative": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 35
+                            }
+                        ]
+                    },
+                    "ActVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "ActiveControlLoopIndex": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "AxisId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "AxisModeConfirmation": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "AxisState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Present State Of The Axis Movement (continuous axis):\r\n0  = INACTIVE:\t\taxis has no job\r\n1  = RUNNING:\t\taxis is executing a motion job\r\n2  = OVERRIDE_ZERO:\taxis is executing a job but override is zero\r\n3  = PHASE_VELOCONST:\taxis is moving at constant velocity\r\n4  = PHASE_ACCPOS:\taxis is accelerating\r\n5  = PHASE_ACCNEG:\taxis is decelerating\r\nSlaves only:\r\n11 = PREPHASE:\t\tslave axis is in a motion pre-phase\r\n12 = SYNCHRONIZING:\tslave axis is synchronizing\r\n13 = SYNCHRONOUS:\tslave axis is moving synchronously\r\nExternal Setpoint Generation:\r\n41 = EXTSETGEN_MODE1:\texternal setpoint generation active\r\n42 = EXTSETGEN_MODE2:\tinternal and external setpoint gen. active",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "CamCouplingState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..7_OF-MC.NCTOPLC_AXIS_REF_CAMCOUPLINGSTATE"
+                            },
+                            {
+                                "propertyOrder": 33
+                            }
+                        ]
+                    },
+                    "CamCouplingTableID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.UINTARR8"
+                            },
+                            {
+                                "propertyOrder": 34
+                            }
+                        ]
+                    },
+                    "CmdNo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 24
+                            }
+                        ]
+                    },
+                    "CmdState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 25
+                            }
+                        ]
+                    },
+                    "ControlLoopIndex": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "CoupleState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Axis Coupling Status:\r\n0: axis is a single axis (not coupled)\r\n1: axis is a master axis\r\n2: axis is master and slave\r\n3: axis is a slave axis",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "DcTimeStamp": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 41
+                            }
+                        ]
+                    },
+                    "ErrorCode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "HomingState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "Axis Homing Status:\r\n0: idle\r\n1: start homing\r\n2: searching home switch\r\n3: stopping on home switch\r\n4: moving off home switch\r\n5: searching sync pulse\r\n6: stopping after homing",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "ModuloActPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "ModuloActTurns": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "ModuloSetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 22
+                            }
+                        ]
+                    },
+                    "ModuloSetTurns": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 23
+                            }
+                        ]
+                    },
+                    "OpModeDWord": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_OPMODE"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "PosDiff": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "SafEntries": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "SetAcc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 20
+                            }
+                        ]
+                    },
+                    "SetJerk": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 26
+                            }
+                        ]
+                    },
+                    "SetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "SetTorque": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 27
+                            }
+                        ]
+                    },
+                    "SetTorqueDerivative": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 36
+                            }
+                        ]
+                    },
+                    "SetVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "StateDWord": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "StateDWord2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE2"
+                            },
+                            {
+                                "propertyOrder": 29
+                            }
+                        ]
+                    },
+                    "StateDWord3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE3"
+                            },
+                            {
+                                "propertyOrder": 30
+                            }
+                        ]
+                    },
+                    "SvbEntries": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "TargetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 21
+                            }
+                        ]
+                    },
+                    "TorqueOffset": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 38
+                            }
+                        ]
+                    },
+                    "TouchProbeCounter": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "propertyOrder": 32
+                            }
+                        ]
+                    },
+                    "TouchProbeState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "propertyOrder": 31
+                            }
+                        ]
+                    },
+                    "UserData": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 42
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "StateDWord",
+                    "ErrorCode",
+                    "AxisState",
+                    "AxisModeConfirmation",
+                    "HomingState",
+                    "CoupleState",
+                    "SvbEntries",
+                    "SafEntries",
+                    "AxisId",
+                    "OpModeDWord",
+                    "ActPos",
+                    "ModuloActPos",
+                    "ActiveControlLoopIndex",
+                    "ControlLoopIndex",
+                    "ModuloActTurns",
+                    "ActVelo",
+                    "PosDiff",
+                    "SetPos",
+                    "SetVelo",
+                    "SetAcc",
+                    "TargetPos",
+                    "ModuloSetPos",
+                    "ModuloSetTurns",
+                    "CmdNo",
+                    "CmdState",
+                    "SetJerk",
+                    "SetTorque",
+                    "ActTorque",
+                    "StateDWord2",
+                    "StateDWord3",
+                    "TouchProbeState",
+                    "TouchProbeCounter",
+                    "CamCouplingState",
+                    "CamCouplingTableID",
+                    "ActTorqueDerivative",
+                    "SetTorqueDerivative",
+                    "AbsPhasingPos",
+                    "TorqueOffset",
+                    "ActPosWithoutPosCorrection",
+                    "ActAcc",
+                    "DcTimeStamp",
+                    "UserData"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_CAMCOUPLINGSTATE": {
+                "additionalProperties": false,
+                "properties": {
+                    "CamActivationPending": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "CamActive": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "CamDataQueued": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "CamDeactivationPending": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "CamScalingPending": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "CamActivationPending",
+                    "CamDeactivationPending",
+                    "CamActive",
+                    "CamDataQueued",
+                    "CamScalingPending"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_OPMODE": {
+                "additionalProperties": false,
+                "properties": {
+                    "ApplicationRequest": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "OpModeAllowExtSetAxisCommands": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "OpModeAllowSlaveCommands": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "OpModeBacklashCompensation": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "OpModeDelayedErrorReaction": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "OpModeLoop": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "OpModeModulo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "OpModeMotionMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "OpModeOutputSmoothingFilter": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "OpModePEHTimeMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "OpModePosAreaMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "OpModePosCorrection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "OpModePosLagMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "OpModeSimulationAxis": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "OpModeSoftLimitMaxMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "OpModeSoftLimitMinMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "OpModeStopMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "OpModeTargetPosMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "OpModeVeloLagMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "OpModePosAreaMonitoring",
+                    "OpModeTargetPosMonitoring",
+                    "OpModeLoop",
+                    "OpModeMotionMonitoring",
+                    "OpModePEHTimeMonitoring",
+                    "OpModeBacklashCompensation",
+                    "OpModeDelayedErrorReaction",
+                    "OpModeModulo",
+                    "OpModeSimulationAxis",
+                    "OpModeStopMonitoring",
+                    "OpModeOutputSmoothingFilter",
+                    "OpModePosLagMonitoring",
+                    "OpModeVeloLagMonitoring",
+                    "OpModeSoftLimitMinMonitoring",
+                    "OpModeSoftLimitMaxMonitoring",
+                    "OpModePosCorrection",
+                    "OpModeAllowSlaveCommands",
+                    "OpModeAllowExtSetAxisCommands",
+                    "ApplicationRequest"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE": {
+                "additionalProperties": false,
+                "properties": {
+                    "CamDataQueued": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 23
+                            }
+                        ]
+                    },
+                    "CamScalingPending": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 24
+                            }
+                        ]
+                    },
+                    "CamTableQueued": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 22
+                            }
+                        ]
+                    },
+                    "CmdBuffered": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 25
+                            }
+                        ]
+                    },
+                    "Compensating": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "ConstantVelocity": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "ContinuousMotion": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 20
+                            }
+                        ]
+                    },
+                    "ControlLoopClosed": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 21
+                            }
+                        ]
+                    },
+                    "DriveDeviceError": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 29
+                            }
+                        ]
+                    },
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 32
+                            }
+                        ]
+                    },
+                    "ErrorPropagationDelayed": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "ExtSetPointGenEnabled": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "ExternalLatchValid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "HasBeenStopped": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "HasJob": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "Homed": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "HomingBusy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "InPositionArea": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "InTargetPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "IoDataInvalid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 31
+                            }
+                        ]
+                    },
+                    "IsDriveLimitActive": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "MotionCommandsLocked": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 30
+                            }
+                        ]
+                    },
+                    "NegativeDirection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "NewTargetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "NotMoving": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "Operational": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "PTPmode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 26
+                            }
+                        ]
+                    },
+                    "PhasingActive": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "PositiveDirection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "Protected": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "SoftLimitMaxExceeded": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 28
+                            }
+                        ]
+                    },
+                    "SoftLimitMinExceeded": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 27
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "Operational",
+                    "Homed",
+                    "NotMoving",
+                    "InPositionArea",
+                    "InTargetPosition",
+                    "Protected",
+                    "ErrorPropagationDelayed",
+                    "HasBeenStopped",
+                    "HasJob",
+                    "PositiveDirection",
+                    "NegativeDirection",
+                    "HomingBusy",
+                    "ConstantVelocity",
+                    "Compensating",
+                    "ExtSetPointGenEnabled",
+                    "PhasingActive",
+                    "ExternalLatchValid",
+                    "NewTargetPos",
+                    "IsDriveLimitActive",
+                    "ContinuousMotion",
+                    "ControlLoopClosed",
+                    "CamTableQueued",
+                    "CamDataQueued",
+                    "CamScalingPending",
+                    "CmdBuffered",
+                    "PTPmode",
+                    "SoftLimitMinExceeded",
+                    "SoftLimitMaxExceeded",
+                    "DriveDeviceError",
+                    "MotionCommandsLocked",
+                    "IoDataInvalid",
+                    "Error"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE2": {
+                "additionalProperties": false,
+                "properties": {
+                    "Flags": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE2_FLAGS"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "Value": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "Value",
+                    "Flags"
+                ],
+                "type": "object",
+                "union": true
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE2_FLAGS": {
+                "additionalProperties": false,
+                "properties": {
+                    "AvoidingCollision": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "AvoidingCollision"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE3": {
+                "additionalProperties": false,
+                "properties": {
+                    "Flags": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE3_FLAGS"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "Value": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "Value",
+                    "Flags"
+                ],
+                "type": "object",
+                "union": true
+            },
+            "ADS-PLC1.MC.NCTOPLC_AXIS_REF_STATE3_FLAGS": {
+                "additionalProperties": false,
+                "properties": {
+                    "TouchProbe1InputState ": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "TouchProbe2InputState ": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "TouchProbe1InputState ",
+                    "TouchProbe2InputState "
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.PLCTONC_AXIS_REF": {
+                "additionalProperties": false,
+                "attributes": {
+                    "NcStructType": "1"
+                },
+                "properties": {
+                    "AxisModeDWord": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "AxisModeLReal": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "AxisModeRequest": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "ControlDWord": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.PLCTONC_AXIS_REF_CTRL"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "ExtControllerOutput": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "ExtSetAcc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "ExtSetDirection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DINT"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "ExtSetPos": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "ExtSetVelo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "ExtTorque": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "GearRatio1": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "GearRatio2": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "GearRatio3": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "GearRatio4": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "MapState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "Override": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "PlcCycleControl": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BYTE"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "PlcCycleCount": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BYTE"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "PositionCorrection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "ControlDWord",
+                    "Override",
+                    "AxisModeRequest",
+                    "AxisModeDWord",
+                    "AxisModeLReal",
+                    "PositionCorrection",
+                    "ExtSetPos",
+                    "ExtSetVelo",
+                    "ExtSetAcc",
+                    "ExtSetDirection",
+                    "ExtControllerOutput",
+                    "GearRatio1",
+                    "GearRatio2",
+                    "GearRatio3",
+                    "GearRatio4",
+                    "MapState",
+                    "PlcCycleControl",
+                    "PlcCycleCount",
+                    "ExtTorque"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.MC.PLCTONC_AXIS_REF_CTRL": {
+                "additionalProperties": false,
+                "properties": {
+                    "AcceptBlockedDrive": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "Enable": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "FeedEnableMinus": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "FeedEnablePlus": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "HomingSensor": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "NcDebugFlag": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "PlcDebugFlag": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BIT"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "Enable",
+                    "FeedEnablePlus",
+                    "FeedEnableMinus",
+                    "HomingSensor",
+                    "AcceptBlockedDrive",
+                    "PlcDebugFlag",
+                    "NcDebugFlag"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.STRING-23": {
+                "allOf": [
+                    {
+                        "maxLength": 23
+                    },
+                    {
+                        "$ref": "tchmi:general#/definitions/String"
+                    }
+                ]
+            },
+            "ADS-PLC1.ST_MotorParameters": {
+                "additionalProperties": false,
+                "properties": {
+                    "axis": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.AXIS_REF"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "enable": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "executeHome": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "executeMoveAbsolute": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "executeMoveVelocity": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "executeReset": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "executeSetPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "executeStop": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "jogBackwards": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "jogForward": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "maxPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "minPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "mode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ControlMode"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "position": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "stateMessage": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "targetAcceleration": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "targetPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "targetVelocity": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "velocity": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "propertyOrder": 19
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "axis",
+                    "mode",
+                    "enable",
+                    "executeMoveAbsolute",
+                    "executeMoveVelocity",
+                    "executeStop",
+                    "executeReset",
+                    "executeHome",
+                    "executeSetPosition",
+                    "jogForward",
+                    "jogBackwards",
+                    "targetPosition",
+                    "targetVelocity",
+                    "targetAcceleration",
+                    "minPosition",
+                    "maxPosition",
+                    "stateMessage",
+                    "position",
+                    "velocity"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_MC2.AXIS_REF": {
+                "additionalProperties": false,
+                "attributes": {
+                    "conditionalshow_all_locals": ""
+                },
+                "properties": {
+                    "ADS": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.ST_AdsAddress"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "DriveAddress": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.ST_DriveAddress"
+                            },
+                            {
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "NcToPlc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.NCTOPLC_AXIS_REF"
+                            },
+                            {
+                                "attributes": {
+                                    "TcAddressType": "Input"
+                                },
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "PlcToNc": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.MC.PLCTONC_AXIS_REF"
+                            },
+                            {
+                                "attributes": {
+                                    "TcAddressType": "Output"
+                                },
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "Status": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.ST_AxisStatus"
+                            },
+                            {
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "Storage": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.ARRAY_0..127_OF-DWORD"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": ""
+                                },
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "_internal": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2._InternalAxisRefData"
+                            },
+                            {
+                                "attributes": {
+                                    "conditionalshow": ""
+                                },
+                                "propertyOrder": 6
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "PlcToNc",
+                    "NcToPlc",
+                    "ADS",
+                    "Status",
+                    "DriveAddress",
+                    "_internal",
+                    "Storage"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_MC2.E_NcAxisType": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    5,
+                    6,
+                    7,
+                    100
+                ],
+                "options": [
+                    {
+                        "label": "NcAxisType_undefined",
+                        "value": 0
+                    },
+                    {
+                        "label": "NcAxisType_Continious",
+                        "value": 1
+                    },
+                    {
+                        "label": "NcAxisType_Discrete_TwoSpeed",
+                        "value": 2
+                    },
+                    {
+                        "label": "NcAxisType_LowCostStepper_DigIO",
+                        "value": 3
+                    },
+                    {
+                        "label": "NcAxisType_Encoder",
+                        "value": 5
+                    },
+                    {
+                        "label": "NcAxisType_Hydraulic",
+                        "value": 6
+                    },
+                    {
+                        "label": "NcAxisType_TimeGenerator",
+                        "value": 7
+                    },
+                    {
+                        "label": "NcAxisType_Specific",
+                        "value": 100
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc2_MC2.E_NcDriveType": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    20,
+                    21,
+                    22,
+                    23,
+                    24
+                ],
+                "options": [
+                    {
+                        "label": "NcDriveType_undefined",
+                        "value": 0
+                    },
+                    {
+                        "label": "NcDriveType_M2400_DAC1",
+                        "value": 1
+                    },
+                    {
+                        "label": "NcDriveType_M2400_DAC2",
+                        "value": 2
+                    },
+                    {
+                        "label": "NcDriveType_M2400_DAC3",
+                        "value": 3
+                    },
+                    {
+                        "label": "NcDriveType_M2400_DAC4",
+                        "value": 4
+                    },
+                    {
+                        "label": "NcDriveType_KL4XXX",
+                        "value": 5
+                    },
+                    {
+                        "label": "NcDriveType_KL4XXX_NonLinear",
+                        "value": 6
+                    },
+                    {
+                        "label": "NcDriveType_Discete_TwoSpeed",
+                        "value": 7
+                    },
+                    {
+                        "label": "NcDriveType_Stepper",
+                        "value": 8
+                    },
+                    {
+                        "label": "NcDriveType_Sercos",
+                        "value": 9
+                    },
+                    {
+                        "label": "NcDriveType_KL5051",
+                        "value": 10
+                    },
+                    {
+                        "label": "NcDriveType_AX2000_B200",
+                        "value": 11
+                    },
+                    {
+                        "label": "NcDriveType_ProfiDrive",
+                        "value": 12
+                    },
+                    {
+                        "label": "NcDriveType_Universal",
+                        "value": 13
+                    },
+                    {
+                        "label": "NcDriveType_NcBackplane",
+                        "value": 14
+                    },
+                    {
+                        "label": "NcDriveType_CANopen_Lenze",
+                        "value": 15
+                    },
+                    {
+                        "label": "NcDriveType_CANopen_DS402_MDP742",
+                        "value": 16
+                    },
+                    {
+                        "label": "NcDriveType_AX2000_B900",
+                        "value": 17
+                    },
+                    {
+                        "label": "NcDriveType_KL2531_Stepper",
+                        "value": 20
+                    },
+                    {
+                        "label": "NcDriveType_KL2532_DC",
+                        "value": 21
+                    },
+                    {
+                        "label": "NcDriveType_TCOM",
+                        "value": 22
+                    },
+                    {
+                        "label": "NcDriveType_MDP_733",
+                        "value": 23
+                    },
+                    {
+                        "label": "NcDriveType_MDP_703",
+                        "value": 24
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc2_MC2.E_NcEncoderType": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9,
+                    10,
+                    11,
+                    12,
+                    13,
+                    14,
+                    15,
+                    16,
+                    17,
+                    18,
+                    19,
+                    20,
+                    21,
+                    24,
+                    25,
+                    26,
+                    27,
+                    28,
+                    29,
+                    100
+                ],
+                "options": [
+                    {
+                        "label": "NcEncoderType_undefined",
+                        "value": 0
+                    },
+                    {
+                        "label": "NcEncoderType_Simulation",
+                        "value": 1
+                    },
+                    {
+                        "label": "NcEncoderType_ABS_M3000",
+                        "value": 2
+                    },
+                    {
+                        "label": "NcEncoderType_INC_M31X0",
+                        "value": 3
+                    },
+                    {
+                        "label": "NcEncoderType_INC_KL5101",
+                        "value": 4
+                    },
+                    {
+                        "label": "NcEncoderType_ABS_KL5001_SSI",
+                        "value": 5
+                    },
+                    {
+                        "label": "NcEncoderType_INC_KL5051",
+                        "value": 6
+                    },
+                    {
+                        "label": "NcEncoderType_ABS_KL30XX",
+                        "value": 7
+                    },
+                    {
+                        "label": "NcEncoderType_INC_Sercos_P",
+                        "value": 8
+                    },
+                    {
+                        "label": "NcEncoderType_INC_Sercos_PV",
+                        "value": 9
+                    },
+                    {
+                        "label": "NcEncoderType_INC_Binary",
+                        "value": 10
+                    },
+                    {
+                        "label": "NcEncoderType_ABS_M2510",
+                        "value": 11
+                    },
+                    {
+                        "label": "NcEncoderType_ABS_FOX50",
+                        "value": 12
+                    },
+                    {
+                        "label": "NcEncoderType_ABS_HYDRAULIC_FORCE",
+                        "value": 13
+                    },
+                    {
+                        "label": "NcEncoderType_INC_AX2000_B200",
+                        "value": 14
+                    },
+                    {
+                        "label": "NcEncoderType_INC_PROFIDRIVE",
+                        "value": 15
+                    },
+                    {
+                        "label": "NcEncoderType_INC_UNIVERSAL",
+                        "value": 16
+                    },
+                    {
+                        "label": "NcEncoderType_INC_NCBACKPLANE",
+                        "value": 17
+                    },
+                    {
+                        "label": "NcEncoderType_INC_CANOPEN_LENZE",
+                        "value": 18
+                    },
+                    {
+                        "label": "NcEncoderType_INC_CANOPEN_DS402_MDP513_MDP742",
+                        "value": 19
+                    },
+                    {
+                        "label": "NcEncoderType_INC_AX2000_B900",
+                        "value": 20
+                    },
+                    {
+                        "label": "NcEncoderType_INC_KL5151",
+                        "value": 21
+                    },
+                    {
+                        "label": "NcEncoderType_INC_IP5209",
+                        "value": 24
+                    },
+                    {
+                        "label": "NcEncoderType_INC_KL2531_Stepper",
+                        "value": 25
+                    },
+                    {
+                        "label": "NcEncoderType_INC_KL2532_DC",
+                        "value": 26
+                    },
+                    {
+                        "label": "NcEncoderType_INC_TIMEBASEGENERATOR",
+                        "value": 27
+                    },
+                    {
+                        "label": "NcEncoderType_INC_TCOM",
+                        "value": 28
+                    },
+                    {
+                        "label": "NcEncoderType_INC_CANOPEN_MDP513_64BIT",
+                        "value": 29
+                    },
+                    {
+                        "label": "NcEncoderType_SPECIFIC",
+                        "value": 100
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc2_MC2.MC_AxisStates": {
+                "enum": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ],
+                "options": [
+                    {
+                        "label": "MC_AXISSTATE_UNDEFINED",
+                        "value": 0
+                    },
+                    {
+                        "label": "MC_AXISSTATE_DISABLED",
+                        "value": 1
+                    },
+                    {
+                        "label": "MC_AXISSTATE_STANDSTILL",
+                        "value": 2
+                    },
+                    {
+                        "label": "MC_AXISSTATE_ERRORSTOP",
+                        "value": 3
+                    },
+                    {
+                        "label": "MC_AXISSTATE_STOPPING",
+                        "value": 4
+                    },
+                    {
+                        "label": "MC_AXISSTATE_HOMING",
+                        "value": 5
+                    },
+                    {
+                        "label": "MC_AXISSTATE_DISCRETEMOTION",
+                        "value": 6
+                    },
+                    {
+                        "label": "MC_AXISSTATE_CONTINOUSMOTION",
+                        "value": 7
+                    },
+                    {
+                        "label": "MC_AXISSTATE_SYNCHRONIZEDMOTION",
+                        "value": 8
+                    }
+                ],
+                "type": "integer"
+            },
+            "ADS-PLC1.Tc2_MC2.ST_AdsAddress": {
+                "additionalProperties": false,
+                "properties": {
+                    "Channel": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "NetId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-23"
+                            },
+                            {
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "Port": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "propertyOrder": 2
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "NetId",
+                    "Port",
+                    "Channel"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_MC2.ST_AxisOpModes": {
+                "additionalProperties": false,
+                "properties": {
+                    "AllowExtSetAxisCommands": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "2011-10-13 KSt",
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "AllowSlaveCommands": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "2009-02-20 KSt",
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "BacklashCompensation": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 5 - OpModeDWord",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "DelayedErrorReaction": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 6 - OpModeDWord",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "LoopMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 2 - OpModeDWord - loop mode for two speed axes",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "Modulo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 7 - OpModeDWord - axis is parameterized as modulo axis",
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "MotionMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 3 - OpModeDWord",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "PEHTimeMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 4 - OpModeDWord",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "PositionAreaMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 0 - OpModeDWord",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "PositionCorrection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 20 - OpModeDWord",
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "PositionLagMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 16 - OpModeDWord",
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "SimulationAxis": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 8 - OpModeDWord - axis is a simulation axis - available from 2.11 R2 B2033 - 2011-05-31 KSt",
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "SoftLimitMaxMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 19 - OpModeDWord",
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "SoftLimitMinMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 18 - OpModeDWord",
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "StopMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 12 - OpModeDWord - TargetPositionMonitoring for Stop and Halt commands - available from 2.11 R3 - 2011-12-09 KSt",
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "TargetPositionMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 1 - OpModeDWord",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "VelocityLagMonitoring": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "bit 17 - OpModeDWord",
+                                "propertyOrder": 12
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "PositionAreaMonitoring",
+                    "TargetPositionMonitoring",
+                    "LoopMode",
+                    "MotionMonitoring",
+                    "PEHTimeMonitoring",
+                    "BacklashCompensation",
+                    "DelayedErrorReaction",
+                    "Modulo",
+                    "SimulationAxis",
+                    "StopMonitoring",
+                    "PositionLagMonitoring",
+                    "VelocityLagMonitoring",
+                    "SoftLimitMinMonitoring",
+                    "SoftLimitMaxMonitoring",
+                    "PositionCorrection",
+                    "AllowSlaveCommands",
+                    "AllowExtSetAxisCommands"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_MC2.ST_AxisStatus": {
+                "additionalProperties": false,
+                "properties": {
+                    "Accelerating": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 17
+                            }
+                        ]
+                    },
+                    "CamDataQueued": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 22",
+                                "propertyOrder": 40
+                            }
+                        ]
+                    },
+                    "CamScalingPending": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 23",
+                                "propertyOrder": 42
+                            }
+                        ]
+                    },
+                    "CamTableQueued": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 21",
+                                "propertyOrder": 41
+                            }
+                        ]
+                    },
+                    "CmdBuffered": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 24",
+                                "propertyOrder": 43
+                            }
+                        ]
+                    },
+                    "Compensating": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "superposition - overlayed motion",
+                                "propertyOrder": 36
+                            }
+                        ]
+                    },
+                    "ConstantVelocity": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 12",
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "ContinuousMotion": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 19",
+                                "propertyOrder": 13
+                            }
+                        ]
+                    },
+                    "ControlLoopClosed": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 20 - operational and position control active",
+                                "propertyOrder": 20
+                            }
+                        ]
+                    },
+                    "Coupled": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "Axis.NcToPlc.CoupleState",
+                                "propertyOrder": 50
+                            }
+                        ]
+                    },
+                    "CycleCounter": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "PLC cycle counter when this data set updated",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "Decelerating": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 18
+                            }
+                        ]
+                    },
+                    "Disabled": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "DiscreteMotion": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "DriveDeviceError": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 28",
+                                "propertyOrder": 45
+                            }
+                        ]
+                    },
+                    "DriveLimitActive": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 18 - 20181213 Fap",
+                                "propertyOrder": 48
+                            }
+                        ]
+                    },
+                    "Error": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 31 - axis error state",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "ErrorID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "attributes": {
+                                    "displaymode": "hex"
+                                },
+                                "comment": "axis error code",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "ErrorPropagationDelayed": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 6",
+                                "propertyOrder": 47
+                            }
+                        ]
+                    },
+                    "ErrorStop": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "PLCopen motion control statemachine states:",
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "ExtSetPointGenEnabled": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 14",
+                                "propertyOrder": 37
+                            }
+                        ]
+                    },
+                    "ExternalLatchValid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 16",
+                                "propertyOrder": 39
+                            }
+                        ]
+                    },
+                    "HasBeenStopped": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 7",
+                                "propertyOrder": 22
+                            }
+                        ]
+                    },
+                    "HasJob": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 8",
+                                "propertyOrder": 21
+                            }
+                        ]
+                    },
+                    "Homed": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 1",
+                                "propertyOrder": 27
+                            }
+                        ]
+                    },
+                    "Homing": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "HomingBusy": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 11",
+                                "propertyOrder": 28
+                            }
+                        ]
+                    },
+                    "InPositionArea": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 3",
+                                "propertyOrder": 24
+                            }
+                        ]
+                    },
+                    "InTargetPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 4",
+                                "propertyOrder": 25
+                            }
+                        ]
+                    },
+                    "IoDataInvalid": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 30",
+                                "propertyOrder": 46
+                            }
+                        ]
+                    },
+                    "MotionCommandsLocked": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 29 - stop 'n hold",
+                                "propertyOrder": 29
+                            }
+                        ]
+                    },
+                    "MotionState": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.MC_AxisStates"
+                            },
+                            {
+                                "comment": "motion state in the PLCopen state diagram",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "Moving": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 9+10",
+                                "propertyOrder": 32
+                            }
+                        ]
+                    },
+                    "NcApplicationRequest": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "OpModeDWord bit 23",
+                                "propertyOrder": 52
+                            }
+                        ]
+                    },
+                    "NcCycleCounter": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "NC cycle counter incremented after NC task updated NcToPlc data structures",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "NegativeDirection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 10",
+                                "propertyOrder": 34
+                            }
+                        ]
+                    },
+                    "NewTargetPosition": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 17 - new target position commanded during move",
+                                "propertyOrder": 23
+                            }
+                        ]
+                    },
+                    "NotMoving": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 2",
+                                "propertyOrder": 35
+                            }
+                        ]
+                    },
+                    "OpMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.ST_AxisOpModes"
+                            },
+                            {
+                                "comment": "axis operation mode feedback from NcToPlc",
+                                "propertyOrder": 51
+                            }
+                        ]
+                    },
+                    "Operational": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 0 - (was ready)",
+                                "propertyOrder": 19
+                            }
+                        ]
+                    },
+                    "PTPmode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 25",
+                                "propertyOrder": 44
+                            }
+                        ]
+                    },
+                    "PhasingActive": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 15",
+                                "propertyOrder": 38
+                            }
+                        ]
+                    },
+                    "PositiveDirection": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 9",
+                                "propertyOrder": 33
+                            }
+                        ]
+                    },
+                    "ProtectedMode": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 5",
+                                "propertyOrder": 26
+                            }
+                        ]
+                    },
+                    "SoftLimitMaxExceeded": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 27 - forward soft travel limit exceeded",
+                                "propertyOrder": 31
+                            }
+                        ]
+                    },
+                    "SoftLimitMinExceeded": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord bit 26 - reverse soft travel limit exceeded",
+                                "propertyOrder": 30
+                            }
+                        ]
+                    },
+                    "StandStill": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "Stopping": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "SynchronizedMotion": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "TargetTorqueReached": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "StateDWord3 bit 2 - 20240604 Fap",
+                                "propertyOrder": 49
+                            }
+                        ]
+                    },
+                    "UpdateCycleTime": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/LREAL"
+                            },
+                            {
+                                "comment": "task cycle time of the task which calls the status function",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "UpdateTaskIndex": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BYTE"
+                            },
+                            {
+                                "comment": "Task-Index of the task that updated this data set",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "UpdateTaskIndex",
+                    "UpdateCycleTime",
+                    "CycleCounter",
+                    "NcCycleCounter",
+                    "MotionState",
+                    "Error",
+                    "ErrorID",
+                    "ErrorStop",
+                    "Disabled",
+                    "Stopping",
+                    "StandStill",
+                    "DiscreteMotion",
+                    "ContinuousMotion",
+                    "SynchronizedMotion",
+                    "Homing",
+                    "ConstantVelocity",
+                    "Accelerating",
+                    "Decelerating",
+                    "Operational",
+                    "ControlLoopClosed",
+                    "HasJob",
+                    "HasBeenStopped",
+                    "NewTargetPosition",
+                    "InPositionArea",
+                    "InTargetPosition",
+                    "ProtectedMode",
+                    "Homed",
+                    "HomingBusy",
+                    "MotionCommandsLocked",
+                    "SoftLimitMinExceeded",
+                    "SoftLimitMaxExceeded",
+                    "Moving",
+                    "PositiveDirection",
+                    "NegativeDirection",
+                    "NotMoving",
+                    "Compensating",
+                    "ExtSetPointGenEnabled",
+                    "PhasingActive",
+                    "ExternalLatchValid",
+                    "CamDataQueued",
+                    "CamTableQueued",
+                    "CamScalingPending",
+                    "CmdBuffered",
+                    "PTPmode",
+                    "DriveDeviceError",
+                    "IoDataInvalid",
+                    "ErrorPropagationDelayed",
+                    "DriveLimitActive",
+                    "TargetTorqueReached",
+                    "Coupled",
+                    "OpMode",
+                    "NcApplicationRequest"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_MC2.ST_DriveAddress": {
+                "additionalProperties": false,
+                "properties": {
+                    "Channel": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BYTE"
+                            },
+                            {
+                                "comment": "channel number of the hardware drive",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "NcAxisId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "comment": "ID [1..255] of the NC axis",
+                                "propertyOrder": 11
+                            }
+                        ]
+                    },
+                    "NcAxisType": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.E_NcAxisType"
+                            },
+                            {
+                                "comment": "type enumeration of the NC axis",
+                                "propertyOrder": 12
+                            }
+                        ]
+                    },
+                    "NcDriveId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "comment": "ID [1..255] of the NC software drive of an axis",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "NcDriveIndex": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "comment": "index [0..9] of the NC software drive of an axis",
+                                "propertyOrder": 6
+                            }
+                        ]
+                    },
+                    "NcDriveType": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.E_NcDriveType"
+                            },
+                            {
+                                "comment": "type enumeration of the NC software drive of an axis",
+                                "propertyOrder": 7
+                            }
+                        ]
+                    },
+                    "NcEncoderId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "comment": "ID [1..255] of the NC software encoder of an axis",
+                                "propertyOrder": 8
+                            }
+                        ]
+                    },
+                    "NcEncoderIndex": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/DWORD"
+                            },
+                            {
+                                "comment": "index [0..9] of the NC software encoder of an axis",
+                                "propertyOrder": 9
+                            }
+                        ]
+                    },
+                    "NcEncoderType": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_MC2.E_NcEncoderType"
+                            },
+                            {
+                                "comment": "type enumeration of the NC encoder drive of an axis",
+                                "propertyOrder": 10
+                            }
+                        ]
+                    },
+                    "NetID": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_System.T_AmsNetID"
+                            },
+                            {
+                                "comment": "AMS NetID of the hardware drive as a string",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "NetIdBytes": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_System.T_AmsNetIdArr"
+                            },
+                            {
+                                "comment": "AMS NetID of the hardware drive as a byte array (same information as NetID)",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "SlaveAddress": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:server#/definitions/ADS-PLC1.Tc2_System.T_AmsPort"
+                            },
+                            {
+                                "comment": "slave address of the hardware drive connected to a bus master",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "TcAxisObjectId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 16
+                            }
+                        ]
+                    },
+                    "TcDriveObjectId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 14
+                            }
+                        ]
+                    },
+                    "TcEncoderObjectId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": ""
+                                },
+                                "propertyOrder": 15
+                            }
+                        ]
+                    },
+                    "TcSoftDriveObjectId": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/OTCID"
+                            },
+                            {
+                                "attributes": {
+                                    "OTCID": "",
+                                    "conditionalshow": ""
+                                },
+                                "comment": "new since 2016-04-11 FAP - just available with versions after this date, otherwise zero",
+                                "propertyOrder": 13
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "NetID",
+                    "NetIdBytes",
+                    "SlaveAddress",
+                    "Channel",
+                    "NcDriveId",
+                    "NcDriveIndex",
+                    "NcDriveType",
+                    "NcEncoderId",
+                    "NcEncoderIndex",
+                    "NcEncoderType",
+                    "NcAxisId",
+                    "NcAxisType",
+                    "TcSoftDriveObjectId",
+                    "TcDriveObjectId",
+                    "TcEncoderObjectId",
+                    "TcAxisObjectId"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_MC2._InternalAxisRefData": {
+                "additionalProperties": false,
+                "attributes": {
+                    "conditionalshow": ""
+                },
+                "properties": {
+                    "CounterSameTaskIndex_AtReadStatusCall": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UINT"
+                            },
+                            {
+                                "comment": "counter increments to max 100 if the task index for the status update never changes",
+                                "propertyOrder": 4
+                            }
+                        ]
+                    },
+                    "LastTaskIndex_AtReadStatusCall": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BYTE"
+                            },
+                            {
+                                "comment": "task index of last recent status update",
+                                "propertyOrder": 3
+                            }
+                        ]
+                    },
+                    "NcCycleCounterAvailable": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "comment": "TRUE if the NcCycleCounter is definitely available on the target system - FALSE if undefined",
+                                "propertyOrder": 1
+                            }
+                        ]
+                    },
+                    "NcCycleCounter_AtReadStatusCall": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "current NC cycle counter when calling ReadStatus",
+                                "propertyOrder": 2
+                            }
+                        ]
+                    },
+                    "PhasingCmdNo": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/UDINT"
+                            },
+                            {
+                                "comment": "PhasingState\t\t\t\t\t\t\t: _E_PhasingState;\t// KSt 20190703 global handshake for phasing blocks",
+                                "propertyOrder": 5
+                            }
+                        ]
+                    },
+                    "PhasingCmdTriggered": {
+                        "allOf": [
+                            {
+                                "$ref": "tchmi:general#/definitions/BOOL"
+                            },
+                            {
+                                "propertyOrder": 6
+                            }
+                        ]
+                    }
+                },
+                "required": [
+                    "NcCycleCounterAvailable",
+                    "NcCycleCounter_AtReadStatusCall",
+                    "LastTaskIndex_AtReadStatusCall",
+                    "CounterSameTaskIndex_AtReadStatusCall",
+                    "PhasingCmdNo",
+                    "PhasingCmdTriggered"
+                ],
+                "type": "object"
+            },
+            "ADS-PLC1.Tc2_System.T_AmsNetID": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.STRING-23"
+            },
+            "ADS-PLC1.Tc2_System.T_AmsNetIdArr": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.AMSNETID"
+            },
+            "ADS-PLC1.Tc2_System.T_AmsPort": {
+                "$ref": "tchmi:general#/definitions/UINT"
+            },
+            "ADS-PLC1.UINTARR8": {
+                "items": {
+                    "$ref": "tchmi:general#/definitions/UINT"
+                },
+                "maxItems": 8,
+                "minItems": 8,
+                "type": "array"
             }
         }
     },
@@ -720,6 +4165,16 @@
             },
             "USEMAPPING": true
         },
+        "ADS.PLC1.MAIN.motor.0": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[0]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_MotorParameters"
+            },
+            "USEMAPPING": true
+        },
         "ADS.PLC1.MAIN.motor.0.enable": {
             "ACCESS": 3,
             "DOMAIN": "ADS",
@@ -1023,6 +4478,648 @@
                         "propertyOrder": 14
                     }
                 ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_MotorParameters"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.enable": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::enable",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.executeHome": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::executeHome",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.executeMoveAbsolute": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::executeMoveAbsolute",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.executeMoveVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::executeMoveVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.executeReset": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::executeReset",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.executeSetPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::executeSetPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.executeStop": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::executeStop",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.jogBackwards": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::jogBackwards",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.jogForward": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::jogForward",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 10
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.maxPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::maxPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 16
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.minPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::minPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.mode": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::mode",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ControlMode"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.position": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::position",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 18
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.stateMessage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::stateMessage",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.targetAcceleration": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::targetAcceleration",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 14
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.targetPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::targetPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.targetVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::targetVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 13
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.1.velocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[1]::velocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]",
+            "SCHEMA": {
+                "$ref": "tchmi:server#/definitions/ADS-PLC1.ST_MotorParameters"
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.enable": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::enable",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 3
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.executeHome": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::executeHome",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 8
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.executeMoveAbsolute": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::executeMoveAbsolute",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 4
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.executeMoveVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::executeMoveVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 5
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.executeReset": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::executeReset",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 7
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.executeSetPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::executeSetPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 9
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.executeStop": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::executeStop",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 6
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.jogBackwards": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::jogBackwards",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 11
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.jogForward": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::jogForward",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/BOOL"
+                    },
+                    {
+                        "propertyOrder": 10
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.maxPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::maxPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 16
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.minPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::minPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 15
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.mode": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::mode",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:server#/definitions/ADS-PLC1.E_ControlMode"
+                    },
+                    {
+                        "propertyOrder": 2
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.position": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::position",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 18
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.stateMessage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::stateMessage",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/STRING%2880%29"
+                    },
+                    {
+                        "propertyOrder": 17
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.targetAcceleration": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::targetAcceleration",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 14
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.targetPosition": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::targetPosition",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 12
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.targetVelocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::targetVelocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 13
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.motor.2.velocity": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::motor[2]::velocity",
+            "SCHEMA": {
+                "allOf": [
+                    {
+                        "$ref": "tchmi:general#/definitions/LREAL"
+                    },
+                    {
+                        "propertyOrder": 19
+                    }
+                ]
+            },
+            "USEMAPPING": true
+        },
+        "ADS.PLC1.MAIN.stateMessage": {
+            "ACCESS": 3,
+            "DOMAIN": "ADS",
+            "DYNAMIC": true,
+            "MAPPING": "PLC1::MAIN::stateMessage",
+            "SCHEMA": {
+                "$ref": "tchmi:general#/definitions/STRING%2880%29"
             },
             "USEMAPPING": true
         },
@@ -4029,6 +8126,8 @@
                 "ADS.AdsSyncReadStateReq": 3,
                 "ADS.CheckLicense": 3,
                 "ADS.Diagnostics": 3,
+                "ADS.PLC1.MAIN.greenLight": 3,
+                "ADS.PLC1.MAIN.motor.0": 3,
                 "ADS.PLC1.MAIN.motor.0.enable": 3,
                 "ADS.PLC1.MAIN.motor.0.executeHome": 3,
                 "ADS.PLC1.MAIN.motor.0.executeMoveAbsolute": 3,
@@ -4047,6 +8146,45 @@
                 "ADS.PLC1.MAIN.motor.0.targetPosition": 3,
                 "ADS.PLC1.MAIN.motor.0.targetVelocity": 3,
                 "ADS.PLC1.MAIN.motor.0.velocity": 3,
+                "ADS.PLC1.MAIN.motor.1": 3,
+                "ADS.PLC1.MAIN.motor.1.enable": 3,
+                "ADS.PLC1.MAIN.motor.1.executeHome": 3,
+                "ADS.PLC1.MAIN.motor.1.executeMoveAbsolute": 3,
+                "ADS.PLC1.MAIN.motor.1.executeMoveVelocity": 3,
+                "ADS.PLC1.MAIN.motor.1.executeReset": 3,
+                "ADS.PLC1.MAIN.motor.1.executeSetPosition": 3,
+                "ADS.PLC1.MAIN.motor.1.executeStop": 3,
+                "ADS.PLC1.MAIN.motor.1.jogBackwards": 3,
+                "ADS.PLC1.MAIN.motor.1.jogForward": 3,
+                "ADS.PLC1.MAIN.motor.1.maxPosition": 3,
+                "ADS.PLC1.MAIN.motor.1.minPosition": 3,
+                "ADS.PLC1.MAIN.motor.1.mode": 3,
+                "ADS.PLC1.MAIN.motor.1.position": 3,
+                "ADS.PLC1.MAIN.motor.1.stateMessage": 3,
+                "ADS.PLC1.MAIN.motor.1.targetAcceleration": 3,
+                "ADS.PLC1.MAIN.motor.1.targetPosition": 3,
+                "ADS.PLC1.MAIN.motor.1.targetVelocity": 3,
+                "ADS.PLC1.MAIN.motor.1.velocity": 3,
+                "ADS.PLC1.MAIN.motor.2": 3,
+                "ADS.PLC1.MAIN.motor.2.enable": 3,
+                "ADS.PLC1.MAIN.motor.2.executeHome": 3,
+                "ADS.PLC1.MAIN.motor.2.executeMoveAbsolute": 3,
+                "ADS.PLC1.MAIN.motor.2.executeMoveVelocity": 3,
+                "ADS.PLC1.MAIN.motor.2.executeReset": 3,
+                "ADS.PLC1.MAIN.motor.2.executeSetPosition": 3,
+                "ADS.PLC1.MAIN.motor.2.executeStop": 3,
+                "ADS.PLC1.MAIN.motor.2.jogBackwards": 3,
+                "ADS.PLC1.MAIN.motor.2.jogForward": 3,
+                "ADS.PLC1.MAIN.motor.2.maxPosition": 3,
+                "ADS.PLC1.MAIN.motor.2.minPosition": 3,
+                "ADS.PLC1.MAIN.motor.2.mode": 3,
+                "ADS.PLC1.MAIN.motor.2.position": 3,
+                "ADS.PLC1.MAIN.motor.2.stateMessage": 3,
+                "ADS.PLC1.MAIN.motor.2.targetAcceleration": 3,
+                "ADS.PLC1.MAIN.motor.2.targetPosition": 3,
+                "ADS.PLC1.MAIN.motor.2.targetVelocity": 3,
+                "ADS.PLC1.MAIN.motor.2.velocity": 3,
+                "ADS.PLC1.MAIN.stateMessage": 3,
                 "ChangeUserSettings": 3,
                 "ConfirmAlarm": 3,
                 "CreateEvent": 3,

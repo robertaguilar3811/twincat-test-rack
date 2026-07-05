@@ -10,12 +10,13 @@ VAR
 	// Function blocks
 	fbMotorControl : ARRAY[1..GVL_MotorControl.CNUM_AXIS] OF FB_MotorControl;
 
-	// Default parameters
+	// Init
 	bInit : BOOL := FALSE;
 
 	// State machine
 	state : INT := 0;
 	stateMessage : STRING;
+	movesDone : BOOL := FALSE;
 
 	// Lights
 	greenLight, orangeLight, redLight AT %Q* : BOOL;
@@ -29,8 +30,41 @@ END_VAR]]></Declaration>
 	bInit := TRUE;
 END_IF
 
-// Inputs
-FOR i := 1 TO 1 DO
+// Safety
+IF NOT GVL_Safety.SafetyOutput THEN
+	FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+		motor[i].enable := FALSE;
+	END_FOR
+	state := 999;
+END_IF
+
+// Disable all motors if sw1 goes FALSE
+IF NOT sw1 AND state <> 999 THEN
+	FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+		motor[i].enable := FALSE;
+	END_FOR
+	state := 0;
+END_IF
+
+GVL_Safety.SafetyRestart := sw3;
+GVL_Safety.SafetyErrAck  := (state = 999 AND sw3);
+GVL_Safety.SafetyRun     := TRUE;
+
+FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+	motor[i].executeReset := sw3;
+END_FOR
+
+// Home command — runs every scan regardless of state
+IF sw2 AND state <> 999 THEN
+	FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+		motor[i].targetPosition := 0.0;
+		motor[i].executeMoveAbsolute := TRUE;
+	END_FOR
+	state := 20;
+END_IF
+
+// Motor control
+FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
 	fbMotorControl[i](
 		axis := motor[i].axis,
 		mode := motor[i].mode,
@@ -50,42 +84,119 @@ FOR i := 1 TO 1 DO
 		maxPosition := motor[i].maxPosition,
 		stateMessage => motor[i].stateMessage,
 		position => motor[i].position,
-		velocity => motor[i].velocity
+		velocity => motor[i].velocity,
+		moveDone => motor[i].moveDone
 		);
 END_FOR
 
 CASE state OF
 	0: // Off
+		stateMessage := 'OFF';
+		FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+			motor[i].executeMoveAbsolute := FALSE;
+			motor[i].executeMoveVelocity := FALSE;
+			motor[i].executeStop := FALSE;
+		END_FOR
+		IF sw1 THEN
+			FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+				motor[i].enable := TRUE;
+			END_FOR
+			state := 10;
+		END_IF
 
-	10: //
+	10: // Enabled, waiting for home command
+		stateMessage := 'ENABLED';
 
-	20: //
+	20: // Homing to position 0
+		stateMessage := 'HOMING';
+		FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+			motor[i].executeMoveAbsolute := TRUE;
+		END_FOR
+		movesDone := TRUE;
+		FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+			IF NOT motor[i].moveDone THEN
+				movesDone := FALSE;
+			END_IF
+		END_FOR
+		IF movesDone THEN
+			FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+				motor[i].executeMoveAbsolute := FALSE;
+			END_FOR
+			state := 30;
+		END_IF
 
-	30: //
+	30: // Ready — HMI controls moves from here
+		stateMessage := 'READY';
 
-	40: //
-
-	50: //
-
-	999: //
+	999: // E-stop
+		stateMessage := 'ESTOP';
+		FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+			motor[i].executeStop := TRUE;
+		END_FOR
+		IF GVL_Safety.SafetyOutput THEN
+			FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+				motor[i].executeStop := FALSE;
+			END_FOR
+			state := 0;
+		END_IF
 
 END_CASE
 
-// Outputs]]></ST>
+// Outputs
+greenLight  := state = 30;
+orangeLight := state = 10 OR state = 20;
+redLight    := state = 999;]]></ST>
     </Implementation>
     <Action Name="defaultParameters" Id="{53611ac4-abe2-41cd-89b0-0c065352a0e0}">
       <Implementation>
-        <ST><![CDATA[motor[1].targetVelocity := 100.0;
-motor[1].targetAcceleration := 69.0;
-]]></ST>
+        <ST><![CDATA[FOR i := 1 TO GVL_MotorControl.CNUM_AXIS DO
+	motor[i].targetVelocity := 100.0;
+	motor[i].targetAcceleration := 69.0;
+	motor[i].minPosition := -9999.0;
+	motor[i].maxPosition := 9999.0;
+END_FOR]]></ST>
       </Implementation>
     </Action>
     <LineIds Name="MAIN">
-      <LineId Id="3" Count="46" />
+      <LineId Id="3" Count="2" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="454" Count="0" />
+      <LineId Id="453" Count="0" />
+      <LineId Id="455" Count="0" />
+      <LineId Id="457" Count="2" />
+      <LineId Id="456" Count="0" />
+      <LineId Id="460" Count="3" />
+      <LineId Id="7" Count="27" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="473" Count="0" />
+      <LineId Id="464" Count="2" />
+      <LineId Id="35" Count="1" />
+      <LineId Id="467" Count="0" />
+      <LineId Id="472" Count="0" />
+      <LineId Id="469" Count="2" />
+      <LineId Id="37" Count="1" />
+      <LineId Id="474" Count="3" />
+      <LineId Id="479" Count="0" />
+      <LineId Id="478" Count="0" />
+      <LineId Id="480" Count="0" />
+      <LineId Id="487" Count="0" />
+      <LineId Id="482" Count="0" />
+      <LineId Id="484" Count="0" />
+      <LineId Id="481" Count="0" />
+      <LineId Id="485" Count="0" />
+      <LineId Id="488" Count="0" />
+      <LineId Id="486" Count="0" />
+      <LineId Id="39" Count="7" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="47" Count="2" />
       <LineId Id="2" Count="0" />
+      <LineId Id="87" Count="5" />
+      <LineId Id="489" Count="0" />
     </LineIds>
     <LineIds Name="MAIN.defaultParameters">
+      <LineId Id="4" Count="0" />
       <LineId Id="2" Count="1" />
+      <LineId Id="6" Count="1" />
       <LineId Id="1" Count="0" />
     </LineIds>
   </POU>

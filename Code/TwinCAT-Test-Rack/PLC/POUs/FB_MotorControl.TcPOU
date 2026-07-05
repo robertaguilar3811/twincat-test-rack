@@ -26,6 +26,7 @@ VAR_OUTPUT
 	stateMessage : STRING;
 	position : LREAL;
 	velocity : LREAL;
+	moveDone : BOOL;
 END_VAR
 VAR
 	state : INT;
@@ -245,7 +246,8 @@ END_CASE
 
 // Outputs
 position := axis.NcToPlc.ActPos;
-velocity := axis.NcToPlc.ActVelo;]]></ST>
+velocity := axis.NcToPlc.ActVelo;
+moveDone := fbMoveAbsolute[i].Done;]]></ST>
     </Implementation>
     <LineIds Name="FB_MotorControl">
       <LineId Id="48" Count="15" />
