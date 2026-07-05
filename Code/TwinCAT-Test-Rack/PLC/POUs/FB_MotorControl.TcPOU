@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <POU Name="FB_MotorControl" Id="{2cc031d8-d945-446b-a6d6-7e3ed803e433}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MotorControl
+VAR_INPUT
+	mode : E_ControlMode;
+	enable : BOOL;
+	executeMoveAbsolute : BOOL;
+	executeMoveVelocity : BOOL;
+	executeStop : BOOL;
+	executeReset : BOOL;
+	executeHome : BOOL;
+	executeSetPosition : BOOL;
+	jogForward : BOOL;
+	jogBackwards : BOOL;
+	targetPosition : LREAL;
+	targetVelocity : LREAL;
+	targetAcceleration : LREAL;
+	minPosition : LREAL;
+	maxPosition : LREAL;
+END_VAR
+VAR_IN_OUT
+	axis : AXIS_REF;
+END_VAR
+VAR_OUTPUT
+	stateMessage : STRING;
+	position : LREAL;
+	velocity : LREAL;
+	moveDone : BOOL;
+END_VAR
+VAR
+	state : INT;
+	//stateMessage : STRING;
+	i : INT;
+	direction : MC_Direction;
+	previousPosition : LREAL;
+	previousVelocity : LREAL;
+	fbMoveAbsolute : ARRAY[0..1] OF Tc2_MC2.MC_MoveAbsolute;
+	fbMoveVelocity : ARRAY[0..1] OF Tc2_MC2.MC_MoveVelocity;
+	fbPower : Tc2_MC2.MC_Power;
+	fbStop : Tc2_MC2.MC_Stop;
+	fbReset : Tc2_MC2.MC_Reset;
+	fbHome : Tc2_MC2.MC_Home;
+	fbSetPosition : Tc2_MC2.MC_SetPosition;
+	fbJog : Tc2_MC2.MC_Jog;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbPower(
+	Axis := axis,
+	Enable := enable,
+	Enable_Positive := enable,
+	Enable_Negative := enable,
+	Override := 100.0,
+	BufferMode := ,
+	Options := ,
+	);
+	
+fbStop(
+	Axis := axis,
+	Execute := executeStop,
+	Deceleration := 0,
+	Jerk := 0,
+	Options :=,
+	);
+	
+fbReset(
+	Axis := axis,
+	Execute := executeReset,
+	);
+	
+fbHome(
+	Axis := axis,
+	Execute := ,
+	Position := 0.0,
+	HomingMode := MC_Direct,
+	BufferMode := ,
+	Options := ,
+	bCalibrationCam := ,
+	);
+	
+fbSetPosition(
+	Axis := axis,
+	Execute := executeSetPosition,
+	Position := 0.0,
+	Mode := FALSE,
+	Options := ,
+	);
+	
+fbJog(
+	Axis := axis,
+	JogForward := jogForward,
+	JogBackwards := jogBackwards,
+	Mode := MC_JOGMODE_CONTINOUS,
+	Position := ,
+	Velocity := targetVelocity,
+	Acceleration := targetAcceleration,
+	Deceleration := targetAcceleration,
+	Jerk := 0.0,
+	);
+	
+IF NOT enable THEN
+	state := 0;
+END_IF
+
+CASE state OF
+	0: // Off
+		stateMessage := 'OFF';
+		
+		IF enable THEN
+			state := 10;
+		END_IF
+	
+	10: // Idle
+		stateMessage := 'IDLE';
+		
+		CASE mode OF
+			E_ControlMode.POSITION:
+				state := 20;
+			E_ControlMode.VELOCITY:
+				state := 30;
+		END_CASE
+	
+	20: // Position mode
+		stateMessage := 'POSITION MODE';
+
+		fbMoveAbsolute[i](
+			Axis := axis,
+			Execute := executeMoveAbsolute,
+			Position := targetPosition,
+			Velocity := targetVelocity,
+			Acceleration := targetAcceleration,
+			Deceleration := targetAcceleration,
+			Jerk := 0,
+			BufferMode := ,
+			Options := ,
+			);
+
+		previousPosition := targetPosition;
+		state := 21;
+
+	21: // Monitor position move
+
+		fbMoveAbsolute[i](
+			Axis := axis,
+			Execute := executeMoveAbsolute,
+			Position := targetPosition,
+			Velocity := targetVelocity,
+			Acceleration := targetAcceleration,
+			Deceleration := targetAcceleration,
+			Jerk := 0,
+			BufferMode := ,
+			Options := ,
+			);
+
+		IF mode <> E_ControlMode.POSITION THEN
+			fbMoveAbsolute[i](Axis := axis, Execute := FALSE);
+			i := (i + 1) MOD 2;
+			fbMoveAbsolute[i](Axis := axis, Execute := FALSE);
+			i := (i + 1) MOD 2;
+			state := 10;
+		ELSIF previousPosition <> targetPosition THEN
+			state := 22;
+		END_IF
+
+	22: // Interrupt position move
+
+		fbMoveAbsolute[i](Axis := axis, Execute := FALSE);
+
+		i := (i + 1) MOD 2; // toggle between 0 and 1
+
+		fbMoveAbsolute[i](Axis := axis, Execute := FALSE);
+
+		state := 20;
+	
+	30: // Velocity mode
+		stateMessage := 'VELOCITY MODE';
+
+		IF targetVelocity > 0 THEN
+			direction := MC_Direction.MC_Positive_Direction;
+		ELSE
+			direction := MC_Direction.MC_Negative_Direction;
+		END_IF
+
+		fbMoveVelocity[i](
+			Axis := axis,
+			Execute := executeMoveVelocity,
+			Velocity := ABS(targetVelocity),
+			Acceleration := targetAcceleration,
+			Deceleration := targetAcceleration,
+			Jerk := 0,
+			Direction := direction,
+			BufferMode := ,
+			Options := ,
+			);
+
+		previousVelocity := targetVelocity;
+		state := 31;
+
+	31: // Monitor velocity move
+
+		fbMoveVelocity[i](
+			Axis := axis,
+			Execute := executeMoveVelocity,
+			Velocity := ABS(targetVelocity),
+			Acceleration := targetAcceleration,
+			Deceleration := targetAcceleration,
+			Jerk := 0,
+			Direction := direction,
+			BufferMode := ,
+			Options := ,
+			);
+
+		IF mode <> E_ControlMode.VELOCITY THEN
+			fbMoveVelocity[i](Axis := axis, Execute := FALSE);
+			i := (i + 1) MOD 2;
+			fbMoveVelocity[i](Axis := axis, Execute := FALSE);
+			i := (i + 1) MOD 2;
+			state := 10;
+		ELSIF previousVelocity <> targetVelocity THEN
+			state := 32;
+		END_IF
+
+	32: // Interrupt velocity move
+
+		fbMoveVelocity[i](Axis := axis, Execute := FALSE);
+
+		i := (i + 1) MOD 2; // toggle between 0 and 1
+
+		fbMoveVelocity[i](Axis := axis, Execute := FALSE);
+
+		state := 30;
+	
+	50: //
+	
+	60: //
+	
+	70: //
+	
+	80: //
+	
+	90: //
+	
+	100: //
+END_CASE
+
+// Outputs
+position := axis.NcToPlc.ActPos;
+velocity := axis.NcToPlc.ActVelo;
+moveDone := fbMoveAbsolute[i].Done;]]></ST>
+    </Implementation>
+    <LineIds Name="FB_MotorControl">
+      <LineId Id="48" Count="15" />
+      <LineId Id="46" Count="0" />
+      <LineId Id="181" Count="1" />
+      <LineId Id="188" Count="0" />
+      <LineId Id="184" Count="0" />
+      <LineId Id="183" Count="0" />
+      <LineId Id="366" Count="1" />
+      <LineId Id="369" Count="2" />
+      <LineId Id="373" Count="3" />
+      <LineId Id="368" Count="0" />
+      <LineId Id="379" Count="1" />
+      <LineId Id="382" Count="4" />
+      <LineId Id="381" Count="0" />
+      <LineId Id="390" Count="1" />
+      <LineId Id="393" Count="0" />
+      <LineId Id="395" Count="1" />
+      <LineId Id="399" Count="5" />
+      <LineId Id="392" Count="0" />
+      <LineId Id="313" Count="3" />
+      <LineId Id="218" Count="0" />
+      <LineId Id="9" Count="0" />
+      <LineId Id="12" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="36" Count="3" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="318" Count="2" />
+      <LineId Id="322" Count="2" />
+      <LineId Id="321" Count="0" />
+      <LineId Id="17" Count="1" />
+      <LineId Id="83" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="86" Count="9" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="257" Count="2" />
+      <LineId Id="84" Count="1" />
+      <LineId Id="116" Count="0" />
+      <LineId Id="262" Count="1" />
+      <LineId Id="260" Count="0" />
+      <LineId Id="264" Count="1" />
+      <LineId Id="261" Count="0" />
+      <LineId Id="269" Count="3" />
+      <LineId Id="267" Count="1" />
+      <LineId Id="275" Count="0" />
+      <LineId Id="274" Count="0" />
+      <LineId Id="22" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="200" Count="0" />
+      <LineId Id="124" Count="1" />
+      <LineId Id="131" Count="1" />
+      <LineId Id="126" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="103" Count="9" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="167" Count="0" />
+      <LineId Id="173" Count="0" />
+      <LineId Id="169" Count="0" />
+      <LineId Id="102" Count="0" />
+      <LineId Id="118" Count="0" />
+      <LineId Id="221" Count="0" />
+      <LineId Id="121" Count="0" />
+      <LineId Id="134" Count="1" />
+      <LineId Id="143" Count="1" />
+      <LineId Id="243" Count="0" />
+      <LineId Id="245" Count="0" />
+      <LineId Id="227" Count="0" />
+      <LineId Id="159" Count="0" />
+      <LineId Id="231" Count="0" />
+      <LineId Id="233" Count="0" />
+      <LineId Id="255" Count="0" />
+      <LineId Id="161" Count="0" />
+      <LineId Id="195" Count="0" />
+      <LineId Id="24" Count="10" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="78" Count="2" />
+      <LineId Id="77" Count="0" />
+      <LineId Id="138" Count="4" />
+      <LineId Id="325" Count="1" />
+      <LineId Id="145" Count="13" />
+      <LineId Id="327" Count="0" />
+      <LineId Id="160" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="192" Count="2" />
+      <LineId Id="405" Count="0" />
+      <LineId Id="196" Count="3" />
+      <LineId Id="406" Count="0" />
+      <LineId Id="201" Count="1" />
+      <LineId Id="407" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

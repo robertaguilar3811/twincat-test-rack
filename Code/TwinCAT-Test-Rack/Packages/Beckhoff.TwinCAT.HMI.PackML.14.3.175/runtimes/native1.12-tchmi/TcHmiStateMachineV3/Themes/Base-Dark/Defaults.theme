@@ -1,0 +1,15 @@
+{
+    "$schema": "../../../../TcHmiFramework/Schema/ThemeDescription.Schema.json",
+    "controlTypeValues": {
+        "TcHmi.Controls.Beckhoff.TcHmiPackML.TcHmiStateMachineV3": {
+            "themedResources": {
+                "rectangleColor": {
+                    "color": "#1b1b1f"
+                },
+                "innerRectangleColor": {
+                    "color": "#2A3845"
+                }
+            }
+        }
+    }
+}

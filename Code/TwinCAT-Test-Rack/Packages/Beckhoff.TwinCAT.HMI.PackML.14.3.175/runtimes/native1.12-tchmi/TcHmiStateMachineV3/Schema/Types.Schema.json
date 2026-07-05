@@ -1,0 +1,14 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema",
+    "definitions": {
+        "TcHmi.Controls.Beckhoff.TcHmiPackML.TcHmiStateMachineV3": {
+            "type": "object",
+            "frameworkInstanceOf": "TcHmi.Controls.System.TcHmiControl",
+            "frameworkControlType": "TcHmiStateMachineV3",
+            "frameworkControlNamespace": "TcHmi.Controls.Beckhoff.TcHmiPackML"
+        },
+        "TcHmiStateMachineV3": {
+            "$ref": "tchmi:framework#/definitions/TcHmi.Controls.Beckhoff.TcHmiPackML.TcHmiStateMachineV3"
+        }
+    }
+}

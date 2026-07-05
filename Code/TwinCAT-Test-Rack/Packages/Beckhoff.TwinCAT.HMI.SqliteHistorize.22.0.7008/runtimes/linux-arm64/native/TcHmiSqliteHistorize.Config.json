@@ -1,0 +1,224 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.1.1",
+  "guid": "EB1F70B7-D988-4EFE-8AB5-6D46DD4CED09",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "GetTrendLineData": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "chartName": {
+            "type": "string",
+            "description": "descChartName"
+          },
+          "xAxisStart": {
+            "$ref": "#/definitions/stringTypeArray"
+          },
+          "xAxisEnd": {
+            "$ref": "#/definitions/stringTypeArray"
+          },
+          "displayWidth": {
+            "type": "number",
+            "minimum": 2.0
+          },
+          "yAxes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "symbol"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "descSymbolName"
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": [
+          "chartName",
+          "yAxes",
+          "xAxisStart",
+          "displayWidth"
+        ]
+      },
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "axesData": {
+            "type": "array",
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "string",
+                    "format": "date-time",
+                    "description": "descAxisDataX"
+                  },
+                  "y": {
+                    "type": "number",
+                    "description": "descAxisDataY"
+                  },
+                  "error": {
+                    "type": "number"
+                  },
+                  "flags": {
+                    "type": "string",
+                    "description": "descAxisDataFlags"
+                  }
+                }
+              }
+            },
+            "description": "descAxisData"
+          }
+        }
+      }
+    },
+    "GetTrendLineWindow": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "chartName": {
+            "type": "string",
+            "description": "descChartName"
+          },
+          "xAxisStart": {
+            "$ref": "#/definitions/stringTypeArray"
+          },
+          "xAxisEnd": {
+            "$ref": "#/definitions/stringTypeArray"
+          },
+          "yAxes": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "symbol"
+              ],
+              "properties": {
+                "symbol": {
+                  "type": "string",
+                  "description": "descSymbolName"
+                }
+              },
+              "additionalProperties": false
+            },
+            "description": "descTrendLineAxisY"
+          }
+        },
+        "required": [
+          "chartName",
+          "yAxes",
+          "xAxisStart"
+        ]
+      },
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "xAxisStart": {
+            "type": "string",
+            "format": "date-time",
+            "description": "descTrendLineAxisStartX"
+          },
+          "xAxisEnd": {
+            "type": "string",
+            "format": "date-time",
+            "description": "descTrendLineAxisEndX"
+          }
+        }
+      }
+    },
+    "HistorizeData": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "type": "object",
+        "function": true,
+        "properties": {
+          "databaseSize": {
+            "propertyOrder": 1,
+            "type": "number",
+            "unit": "byte"
+          },
+          "numEntries": {
+            "type": "integer",
+            "propertyOrder": 2,
+            "configDescription": "descNumEntries"
+          },
+          "numEntriesLifetime": {
+            "type": "number",
+            "propertyOrder": 3,
+            "configDescription": "descNumEntries"
+          },
+          "recordingTime": {
+            "type": "string",
+            "format": "timespan",
+            "propertyOrder": 4
+          },
+          "estimatedDatabaseSize": {
+            "propertyOrder": 5,
+            "type": "number",
+            "unit": "byte"
+          },
+          "estimatedDatabaseSizePerSymbol": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "number",
+              "unit": "byte"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "DeleteDatabaseEntries": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true
+      },
+      "writeValue": {
+        "type": "object",
+        "properties": {
+          "symbolName": {
+            "type": "string"
+          },
+          "disableRecording": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "packageVersion": "22.0.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "h1UmmQH+0aNSCS3FSekVkH2y8f3QlJinG/G5pxoUaILRjv6Uygo4ngObATc/KxWSHvH23hdtoddpXbqylv2VF59sdQ0lhm1TV4CaYG3J1TJOv4yjiPcvyZ0539jS5JfpO0+1p8gFC3Cry0AhpVKL26mCeDOx1EDB9iKgYsT0rLue6GZJLy3en1zex89GTeOKuFOvAH7Y+Ok9WZ7ps/sfSj5qf9JSkN2EjLDerj3f3ELgHnnA3i0OG5EKsZsGT6LcUFR0DRQr/B3k/5+GgM0UzikZgD3aUm5gGWAX9EfLb9Jw8jOstsGD5xQLS611Pzsa9Ieyhhc9/Vd4AfV2tJ7OaQ=="
+}

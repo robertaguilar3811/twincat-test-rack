@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.16">
+  <DUT Name="ST_MotorParameters" Id="{c2b2258b-3ad6-4847-b9b8-c6d1b5dde6be}">
+    <Declaration><![CDATA[TYPE ST_MotorParameters :
+STRUCT
+	axis : AXIS_REF;
+	mode : E_ControlMode;
+	enable : BOOL;
+	executeMoveAbsolute : BOOL;
+	executeMoveVelocity : BOOL;
+	executeStop : BOOL;
+	executeReset : BOOL;
+	executeHome : BOOL;
+	executeSetPosition : BOOL;
+	jogForward : BOOL;
+	jogBackwards : BOOL;
+	targetPosition : LREAL;
+	targetVelocity : LREAL;
+	targetAcceleration : LREAL;
+	minPosition : LREAL;
+	maxPosition : LREAL;
+	stateMessage : STRING;
+	position : LREAL;
+	velocity : LREAL;
+	moveDone : BOOL;
+END_STRUCT
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

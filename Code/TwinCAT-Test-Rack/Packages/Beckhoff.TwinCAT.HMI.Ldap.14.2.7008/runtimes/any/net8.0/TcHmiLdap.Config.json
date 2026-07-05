@@ -1,0 +1,113 @@
+{
+  "$schema": "../../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.1.1",
+  "guid": "2c502ca4-e795-40ad-856c-8c0b09f5d414",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation",
+    "StrictConfigListenerFilter"
+  ],
+  "symbolCategories": [
+    {
+      "name": "bindUser",
+      "localization": "CATEGORY_BIND_USER"
+    },
+    {
+      "name": "authentication",
+      "localization": "CATEGORY_AUTHENTICATION"
+    },
+    {
+      "name": "integration",
+      "localization": "CATEGORY_INTEGRATION"
+    }
+  ],
+  "symbols": {
+    "ListNamingContexts": {
+      "readValue": {
+        "function": true,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "ListUsers": {
+      "readValue": {
+        "function": true,
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "GetAttributes": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "additionalProperties": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "connectionState": {
+            "propertyOrder": 1,
+            "type": "string",
+            "enum": [
+              "Good",
+              "Not Connected",
+              "Timeout",
+              "Internal Error"
+            ]
+          },
+          "sinceLastStateCheck": {
+            "propertyOrder": 2,
+            "type": "string",
+            "format": "timespan",
+            "visibility": "HideInEngineering"
+          },
+          "tcpConnectionEstablished": {
+            "propertyOrder": 3,
+            "type": "boolean"
+          },
+          "anonBindSucceeded": {
+            "propertyOrder": 4,
+            "type": "boolean"
+          },
+          "bindUserBindSucceeded": {
+            "propertyOrder": 5,
+            "type": "boolean"
+          },
+          "ldapErrorCode": {
+            "propertyOrder": 6,
+            "type": "integer"
+          }
+        },
+        "required": [
+          "connectionState"
+        ]
+      }
+    }
+  },
+  "dotNetTargetFramework": "net8.0",
+  "dotNetTargetFrameworkVersion": "v3.0",
+  "dotNetPlatformTarget": "AnyCPU",
+  "dotNetConfiguration": "Release",
+  "packageVersion": "14.2.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "UR9+0dpnRePKCobDtHRWFeCr6aUK7ysS0pOZEcP/5xFfc/fdNcTlWowfBKQbabvX7vyYkk6O8lOnoFvjOneRFLPvw3l5axCAYzkc7PbkIuuiNTio2Eqf6BGS+YmD00DpV12kbCUHI2Xopmm28pKIK78UdOpDBjDkM8TqLHShikBaZ7VOX5qNe6z4PpEuOOuuJEx3xXq6UJHFWiDT5TxoArYl3Ye6OpucjTOKg4aCH0d97YWsVSzZrvHTmphYDOFvsP5BCrbqYRnJpcmwYk1P7HFg8TubQeoYz+l7c5b9cuC3Tzp0jB5tCVIwe91xVjUi6tkN+YgpDuzFFgSYqrNwxg=="
+}

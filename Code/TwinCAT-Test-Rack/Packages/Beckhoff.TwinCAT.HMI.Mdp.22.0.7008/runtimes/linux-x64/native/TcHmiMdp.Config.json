@@ -1,0 +1,67 @@
+{
+  "$schema": "../../TcHmiSrv/schema/ExtensionSettings.Schema.json",
+  "version": "14.4.48.0",
+  "configVersion": "1.0.1.0",
+  "guid": "713EC6CF-3C7D-4061-BB8C-85C04825D1A4",
+  "visibility": "AlwaysShow",
+  "policies": [
+    "StrictPropertyValidation"
+  ],
+  "symbols": {
+    "ListSymbols": {
+      "readValue": {
+        "function": true
+      }
+    },
+    "GetSchema": {
+      "writeValue": {
+        "type": "string"
+      },
+      "readValue": {
+        "function": true
+      }
+    },
+    "Diagnostics": {
+      "userGroups": [
+        "__SystemUsers"
+      ],
+      "readValue": {
+        "function": true,
+        "type": "object",
+        "properties": {
+          "targetSystems": {
+            "type": "object",
+            "description": "descTargetSystems",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "connectionState": {
+                  "propertyOrder": 1,
+                  "type": "string"
+                },
+                "connectError": {
+                  "propertyOrder": 2,
+                  "type": "integer"
+                },
+                "connectErrorMessage": {
+                  "propertyOrder": 3,
+                  "type": "string"
+                },
+                "availableModulesCount": {
+                  "propertyOrder": 4,
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "connectionState"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "packageVersion": "22.0.7008",
+  "productVersion": "14.4.48.0",
+  "signature": "F+ZL4divCILqZv7Fs7EOpYF1Llf6iTecgEczOMCkQudl1zc69viy/przGqHhmQ0Y+8b/71wWcdQv1Jk3Q2JrM+6KCjQBS3+RVzAJHSrgvnasWFIoYhy8YGPV4MOSbdbHsOKjg6bWUhpMLdsD5DZvwrf+9+ExdUfLN/d5vlO6ZzOV07qZyHemJ1R/PVQohGhm1FgyYOMKDPVFGV/1G8956GNOmWoBmBPUNAVsFJ0QBBXutiGOcvcSI6UVh+Oq5aaVeOpdeFVOQzPpnIyQH4uEjO6SZHd31qfRGJebEKNACpkFk0VbzFYJ5pNet5Xcu/K9RaZwqnlU8bx0ALgVpxkUbw=="
+}
